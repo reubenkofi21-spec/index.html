@@ -1,0 +1,3275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>REAL NRG · Founder OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   REAL NRG — FOUNDER OS · Design System
+   ============================================================ */
+:root{
+  --navy-950:#040814;
+  --navy-900:#0a1124;
+  --navy-800:#0f1a36;
+  --navy-700:#162446;
+  --navy-600:#1d2f5c;
+  --teal-400:#2DD4BF;
+  --teal-300:#5EEAD4;
+  --teal-500:#14B8A6;
+  --teal-glow: rgba(45,212,191,0.35);
+  --white:#ffffff;
+  --ink-100:#E8EDF7;
+  --ink-200:#B8C4DD;
+  --ink-300:#7C8AA8;
+  --ink-400:#4A5677;
+  --line: rgba(255,255,255,0.07);
+  --line-strong: rgba(255,255,255,0.14);
+  --glass: rgba(255,255,255,0.035);
+  --glass-strong: rgba(255,255,255,0.06);
+  --success:#34D399;
+  --warning:#FBBF24;
+  --danger:#F87171;
+  --info:#60A5FA;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.25);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.3);
+  --shadow-teal: 0 8px 32px rgba(45,212,191,0.25);
+  --radius-sm:8px;
+  --radius:12px;
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --font-display:'Instrument Serif', serif;
+  --font-body:'Geist', -apple-system, sans-serif;
+  --font-mono:'Geist Mono', monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--font-body);
+  background: var(--navy-950);
+  color: var(--ink-100);
+  font-weight:400;
+  letter-spacing:-0.01em;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+/* Ambient background */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(900px 600px at 10% -10%, rgba(45,212,191,0.10), transparent 60%),
+    radial-gradient(700px 500px at 100% 10%, rgba(96,165,250,0.06), transparent 55%),
+    radial-gradient(800px 600px at 50% 110%, rgba(45,212,191,0.05), transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events:none;
+  z-index:0;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* App shell */
+.app{
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  height:100vh;
+  position:relative;
+  z-index:1;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar{
+  background: linear-gradient(180deg, rgba(10,17,36,0.85), rgba(4,8,20,0.85));
+  border-right: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+  display:flex;
+  flex-direction:column;
+  padding: 22px 16px;
+  overflow-y:auto;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding: 4px 8px 22px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:18px;
+}
+.brand-mark{
+  width:38px; height:38px;
+  border-radius:10px;
+  background: linear-gradient(135deg, var(--teal-400), var(--teal-500));
+  display:grid; place-items:center;
+  box-shadow: 0 4px 16px rgba(45,212,191,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  position:relative;
+}
+.brand-mark svg{ width:20px;height:20px;color:#031716}
+.brand-text .name{
+  font-family:var(--font-display);
+  font-size:22px;
+  letter-spacing:-0.02em;
+  line-height:1;
+  color:var(--white);
+}
+.brand-text .sub{
+  font-size:10px;
+  color:var(--teal-300);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  font-weight:500;
+  margin-top:4px;
+}
+
+.nav-section{
+  font-size:10px;
+  color:var(--ink-400);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  padding: 14px 10px 8px;
+  font-weight:500;
+}
+.nav-item{
+  display:flex; align-items:center; gap:12px;
+  padding: 10px 12px;
+  border-radius:10px;
+  color:var(--ink-200);
+  cursor:pointer;
+  font-size:13.5px;
+  font-weight:450;
+  transition: all 0.2s cubic-bezier(.2,.8,.2,1);
+  border:1px solid transparent;
+  position:relative;
+  user-select:none;
+}
+.nav-item:hover{
+  background: var(--glass);
+  color:var(--white);
+}
+.nav-item.active{
+  background: linear-gradient(90deg, rgba(45,212,191,0.14), rgba(45,212,191,0.04));
+  color: var(--white);
+  border-color: rgba(45,212,191,0.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.nav-item.active::before{
+  content:'';
+  position:absolute; left:-16px; top:8px; bottom:8px;
+  width:3px;
+  background: var(--teal-400);
+  border-radius:0 3px 3px 0;
+  box-shadow: 0 0 12px var(--teal-glow);
+}
+.nav-item .icon{
+  width:18px; height:18px;
+  display:grid; place-items:center;
+  color: var(--ink-300);
+  flex-shrink:0;
+}
+.nav-item.active .icon{ color: var(--teal-300); }
+.nav-item .badge{
+  margin-left:auto;
+  font-size:10px;
+  background: rgba(45,212,191,0.18);
+  color: var(--teal-300);
+  padding: 2px 7px;
+  border-radius:8px;
+  font-weight:500;
+  font-family:var(--font-mono);
+}
+
+.sidebar-footer{
+  margin-top:auto;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+}
+.user-chip{
+  display:flex; align-items:center; gap:10px;
+  padding: 10px;
+  border-radius:12px;
+  background: var(--glass);
+  border:1px solid var(--line);
+}
+.user-avatar{
+  width:34px; height:34px; border-radius:50%;
+  background: linear-gradient(135deg, #1e3a8a, var(--teal-500));
+  display:grid; place-items:center;
+  font-weight:600; font-size:13px; color:white;
+  box-shadow: 0 0 0 2px rgba(45,212,191,0.2);
+}
+.user-info .uname{ font-size:13px; color:var(--white); font-weight:500; line-height:1.2}
+.user-info .urole{ font-size:11px; color:var(--ink-300); margin-top:2px}
+.user-status{
+  width:8px;height:8px; border-radius:50%;
+  background: var(--success);
+  margin-left:auto;
+  box-shadow: 0 0 8px var(--success);
+}
+
+/* ============================================================
+   MAIN AREA
+   ============================================================ */
+.main{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding: 18px 32px;
+  border-bottom:1px solid var(--line);
+  background: rgba(4,8,20,0.5);
+  backdrop-filter: blur(16px);
+  z-index:10;
+}
+.search{
+  flex:1; max-width:480px;
+  position:relative;
+}
+.search input{
+  width:100%;
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding: 10px 14px 10px 38px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size:13px;
+  transition: all 0.2s;
+}
+.search input:focus{
+  outline:none;
+  border-color: rgba(45,212,191,0.4);
+  background: var(--glass-strong);
+  box-shadow: 0 0 0 3px rgba(45,212,191,0.08);
+}
+.search input::placeholder{ color: var(--ink-400)}
+.search svg{ position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--ink-300); width:16px;height:16px}
+.search kbd{
+  position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  background: rgba(255,255,255,0.06);
+  border:1px solid var(--line);
+  color: var(--ink-300);
+  font-family:var(--font-mono);
+  font-size:10px;
+  padding: 2px 6px;
+  border-radius:5px;
+}
+
+.top-actions{
+  display:flex; align-items:center; gap:8px;
+  margin-left:auto;
+}
+.icon-btn{
+  width:38px; height:38px;
+  display:grid; place-items:center;
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius:10px;
+  color: var(--ink-200);
+  cursor:pointer;
+  transition:all 0.18s;
+  position:relative;
+}
+.icon-btn:hover{ background: var(--glass-strong); color: var(--white); border-color: var(--line-strong)}
+.icon-btn .dot{
+  position:absolute; top:8px; right:8px;
+  width:7px; height:7px; border-radius:50%;
+  background: var(--teal-400);
+  box-shadow: 0 0 8px var(--teal-glow);
+}
+
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 9px 16px;
+  border-radius:10px;
+  font-family:var(--font-body);
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition: all 0.2s;
+  background:transparent;
+  color: var(--white);
+}
+.btn-primary{
+  background: linear-gradient(180deg, var(--teal-400), var(--teal-500));
+  color:#031716;
+  font-weight:600;
+  box-shadow: 0 4px 14px rgba(45,212,191,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(45,212,191,0.45), inset 0 1px 0 rgba(255,255,255,0.3)}
+.btn-ghost{
+  background: var(--glass);
+  border-color: var(--line);
+  color: var(--ink-100);
+}
+.btn-ghost:hover{ background: var(--glass-strong); border-color: var(--line-strong)}
+.btn-danger{
+  background: rgba(248,113,113,0.12);
+  border-color: rgba(248,113,113,0.25);
+  color: var(--danger);
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+.content{
+  flex:1;
+  overflow-y:auto;
+  padding: 28px 32px 80px;
+  scroll-behavior:smooth;
+}
+.content::-webkit-scrollbar{ width:8px}
+.content::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.08); border-radius:4px}
+.content::-webkit-scrollbar-track{ background:transparent}
+
+.sidebar::-webkit-scrollbar{ width:6px}
+.sidebar::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.05); border-radius:3px}
+
+.page-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:28px;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.page-title{
+  font-family:var(--font-display);
+  font-size:44px;
+  line-height:1;
+  letter-spacing:-0.025em;
+  color: var(--white);
+  font-weight:400;
+}
+.page-title em{
+  font-style:italic;
+  background: linear-gradient(135deg, var(--teal-300), var(--teal-500));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.page-sub{
+  color: var(--ink-300);
+  font-size:14px;
+  margin-top:8px;
+  letter-spacing:-0.005em;
+}
+.page-actions{ display:flex; gap:10px; align-items:center}
+
+/* Cards */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  position:relative;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+}
+.card:hover{ border-color: var(--line-strong)}
+
+.card-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+.card-title{
+  font-size:13px;
+  font-weight:500;
+  color: var(--ink-200);
+  letter-spacing:-0.005em;
+  display:flex; align-items:center; gap:8px;
+}
+.card-title .pulse-dot{
+  width:6px;height:6px;border-radius:50%;
+  background: var(--teal-400);
+  box-shadow: 0 0 8px var(--teal-glow);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1; transform:scale(1)}
+  50%{opacity:0.5; transform:scale(0.85)}
+}
+
+/* ============================================================
+   DASHBOARD MODULE
+   ============================================================ */
+.hero-card{
+  grid-column: span 12;
+  background:
+    radial-gradient(600px 280px at 10% 0%, rgba(45,212,191,0.12), transparent 70%),
+    linear-gradient(180deg, rgba(45,212,191,0.04), rgba(255,255,255,0.015));
+  border:1px solid rgba(45,212,191,0.18);
+  padding: 28px;
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap:32px;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-card::after{
+  content:'';
+  position:absolute; right:-100px; top:-100px;
+  width:340px; height:340px;
+  background: radial-gradient(circle, rgba(45,212,191,0.18), transparent 70%);
+  filter:blur(40px);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-size:11px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color: var(--teal-300);
+  font-weight:500;
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:12px;
+}
+.hero-eyebrow .live{
+  display:inline-flex; align-items:center; gap:6px;
+  padding: 3px 8px;
+  background: rgba(45,212,191,0.12);
+  border:1px solid rgba(45,212,191,0.25);
+  border-radius:20px;
+  font-size:10px;
+}
+.hero-eyebrow .live::before{
+  content:''; width:6px; height:6px; border-radius:50%;
+  background: var(--teal-400);
+  animation: pulse 1.5s infinite;
+}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:48px;
+  line-height:1.05;
+  letter-spacing:-0.025em;
+  color: var(--white);
+  margin-bottom:14px;
+}
+.hero-title em{ font-style:italic; color: var(--teal-300)}
+.hero-text{
+  color: var(--ink-200);
+  font-size:15px;
+  line-height:1.6;
+  max-width: 480px;
+  margin-bottom:20px;
+}
+.focus-block{
+  background: rgba(0,0,0,0.25);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom:16px;
+}
+.focus-block .label{
+  font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+  color: var(--ink-300);
+  font-weight:500;
+  margin-bottom:8px;
+}
+.focus-block .value{
+  color: var(--white);
+  font-size:18px;
+  font-weight:500;
+  letter-spacing:-0.01em;
+}
+.focus-block .meta{
+  font-size:12px; color: var(--ink-300); margin-top:6px;
+}
+
+/* KPI Grid */
+.kpi-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:16px;
+  margin-bottom:24px;
+}
+.kpi{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012));
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding:18px 20px;
+  position:relative;
+  overflow:hidden;
+}
+.kpi .label{
+  font-size:11px;
+  color: var(--ink-300);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  font-weight:500;
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:10px;
+}
+.kpi .label .ic{
+  width:22px; height:22px;
+  background: rgba(45,212,191,0.12);
+  border-radius:6px;
+  display:grid; place-items:center;
+  color: var(--teal-300);
+}
+.kpi .value{
+  font-family:var(--font-display);
+  font-size:36px;
+  color: var(--white);
+  letter-spacing:-0.02em;
+  line-height:1;
+}
+.kpi .trend{
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:11px;
+  color: var(--success);
+  margin-top:8px;
+  padding: 2px 7px;
+  background: rgba(52,211,153,0.12);
+  border-radius:5px;
+  font-family:var(--font-mono);
+  font-weight:500;
+}
+.kpi .trend.down{ color: var(--danger); background: rgba(248,113,113,0.12)}
+.kpi .sparkline{
+  position:absolute;
+  bottom:14px; right:18px;
+  width:70px; height:32px;
+  opacity:0.7;
+}
+
+/* Dashboard sections grid */
+.dashboard-grid{
+  display:grid;
+  grid-template-columns: 2fr 1fr;
+  gap:20px;
+}
+.dashboard-grid .row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+}
+
+/* Priorities list */
+.priority-item{
+  display:flex; align-items:flex-start; gap:14px;
+  padding: 14px 0;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+  transition: all 0.2s;
+}
+.priority-item:last-child{ border-bottom:none}
+.priority-item:hover{ transform: translateX(2px)}
+.priority-check{
+  width:20px; height:20px;
+  border-radius:6px;
+  border:1.5px solid var(--ink-400);
+  display:grid; place-items:center;
+  cursor:pointer;
+  flex-shrink:0;
+  margin-top:1px;
+  transition:all 0.2s;
+}
+.priority-check:hover{ border-color: var(--teal-400)}
+.priority-check.done{
+  background: var(--teal-400);
+  border-color: var(--teal-400);
+}
+.priority-check.done svg{ color:#031716; width:12px; height:12px}
+.priority-item.done .priority-text{ text-decoration:line-through; color: var(--ink-400)}
+.priority-text{
+  font-size:14px; color: var(--ink-100);
+  letter-spacing:-0.005em;
+  flex:1;
+}
+.priority-meta{
+  font-size:11px; color: var(--ink-300); margin-top:3px;
+  display:flex; gap:10px; align-items:center;
+}
+.priority-tag{
+  font-size:10px; padding: 2px 7px;
+  border-radius:5px;
+  font-weight:500;
+  letter-spacing:0.02em;
+}
+.tag-high{ background: rgba(248,113,113,0.14); color: var(--danger)}
+.tag-mid{ background: rgba(251,191,36,0.14); color: var(--warning)}
+.tag-low{ background: rgba(96,165,250,0.14); color: var(--info)}
+.tag-teal{ background: rgba(45,212,191,0.14); color: var(--teal-300)}
+
+/* Activity feed */
+.activity-item{
+  display:flex; gap:12px;
+  padding: 10px 0;
+  position:relative;
+}
+.activity-item:not(:last-child)::after{
+  content:''; position:absolute; left:13px; top:32px; bottom:-8px;
+  width:1px; background: var(--line);
+}
+.activity-dot{
+  width:26px; height:26px; flex-shrink:0;
+  border-radius:50%;
+  background: var(--glass-strong);
+  border:1px solid var(--line);
+  display:grid; place-items:center;
+  color: var(--teal-300);
+  position:relative;
+  z-index:1;
+}
+.activity-content{ flex:1; font-size:13px; color: var(--ink-100); line-height:1.4}
+.activity-content b{ color: var(--white); font-weight:500}
+.activity-time{ font-size:11px; color: var(--ink-400); margin-top:3px; font-family:var(--font-mono)}
+
+/* Goal progress */
+.goal-row{ margin-bottom:18px}
+.goal-row:last-child{ margin-bottom:0}
+.goal-head{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:13px; color: var(--ink-100);
+  margin-bottom:8px;
+}
+.goal-head .val{ color: var(--white); font-family:var(--font-mono); font-size:12px}
+.goal-track{
+  height:6px; background: rgba(255,255,255,0.05);
+  border-radius:3px; overflow:hidden;
+}
+.goal-fill{
+  height:100%;
+  background: linear-gradient(90deg, var(--teal-500), var(--teal-300));
+  border-radius:3px;
+  box-shadow: 0 0 12px var(--teal-glow);
+  transition: width 0.8s cubic-bezier(.2,.8,.2,1);
+}
+.goal-fill.warn{ background: linear-gradient(90deg, #f59e0b, #fbbf24); box-shadow: 0 0 12px rgba(251,191,36,0.3)}
+
+/* ============================================================
+   PAGE BLOCKS (per module)
+   ============================================================ */
+.page{ display:none; animation: fadeIn 0.4s cubic-bezier(.2,.8,.2,1)}
+.page.active{ display:block}
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(8px)}
+  to{ opacity:1; transform:translateY(0)}
+}
+
+/* Filter chips */
+.filter-bar{
+  display:flex; gap:10px; align-items:center;
+  margin-bottom:20px; flex-wrap:wrap;
+}
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding: 7px 13px;
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius:20px;
+  font-size:12px;
+  color: var(--ink-200);
+  cursor:pointer;
+  transition:all 0.18s;
+  font-weight:450;
+  user-select:none;
+}
+.chip:hover{ background: var(--glass-strong); color: var(--white)}
+.chip.active{
+  background: rgba(45,212,191,0.14);
+  border-color: rgba(45,212,191,0.35);
+  color: var(--teal-300);
+}
+.chip .count{
+  font-size:10px;
+  background: rgba(255,255,255,0.08);
+  padding: 1px 6px;
+  border-radius:8px;
+  font-family:var(--font-mono);
+}
+
+/* Distributor / Partner cards grid */
+.entity-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap:18px;
+}
+.entity-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012));
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all 0.25s cubic-bezier(.2,.8,.2,1);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.entity-card:hover{
+  border-color: rgba(45,212,191,0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.entity-card.favorite::before{
+  content:''; position:absolute; top:0; left:0; right:0;
+  height:2px;
+  background: linear-gradient(90deg, var(--teal-400), transparent);
+}
+.entity-head{
+  display:flex; align-items:flex-start; gap:14px;
+  margin-bottom:14px;
+}
+.entity-logo{
+  width:46px; height:46px;
+  border-radius:12px;
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600));
+  display:grid; place-items:center;
+  font-family:var(--font-display);
+  font-size:20px;
+  color: var(--teal-300);
+  flex-shrink:0;
+  border:1px solid var(--line);
+}
+.entity-info{ flex:1; min-width:0}
+.entity-name{
+  font-size:15px;
+  font-weight:500;
+  color: var(--white);
+  letter-spacing:-0.01em;
+  display:flex; align-items:center; gap:6px;
+}
+.entity-name .star{
+  width:14px;height:14px;color: var(--warning);
+  filter: drop-shadow(0 0 4px rgba(251,191,36,0.4));
+}
+.entity-sub{
+  font-size:12px;
+  color: var(--ink-300);
+  margin-top:3px;
+}
+.entity-rating{
+  display:flex; gap:2px;
+  margin-top:6px;
+}
+.entity-rating svg{ width:11px; height:11px; color: var(--ink-400)}
+.entity-rating svg.filled{ color: var(--teal-300)}
+
+.entity-stats{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 14px;
+  padding: 12px;
+  background: rgba(0,0,0,0.2);
+  border-radius:10px;
+  border:1px solid var(--line);
+  margin-bottom:14px;
+}
+.entity-stat{
+  font-size:11px;
+}
+.entity-stat .k{ color: var(--ink-400); font-size:10px; letter-spacing:0.06em; text-transform:uppercase}
+.entity-stat .v{ color: var(--white); font-weight:500; margin-top:2px; font-size:12.5px}
+
+.entity-tags{
+  display:flex; gap:6px; flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.tag{
+  font-size:10px;
+  padding: 3px 8px;
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius:5px;
+  color: var(--ink-200);
+  font-weight:450;
+}
+.tag.good{ background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.2); color: var(--success)}
+.tag.bad{ background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.2); color: var(--danger)}
+
+.entity-actions{
+  display:flex; gap:6px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+}
+.entity-actions .mini-btn{
+  flex:1;
+  padding: 7px 8px;
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius:7px;
+  color: var(--ink-200);
+  font-size:11px;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:5px;
+  transition:all 0.18s;
+}
+.entity-actions .mini-btn:hover{ background: var(--glass-strong); color: var(--white)}
+
+/* ============================================================
+   NACHARBEIT (Tickets / Kanban)
+   ============================================================ */
+.kanban{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:16px;
+  min-height: 60vh;
+}
+.kanban-col{
+  background: rgba(0,0,0,0.18);
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  display:flex; flex-direction:column;
+  min-height: 200px;
+}
+.kanban-col-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 4px 6px 12px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:12px;
+}
+.kanban-col-title{
+  font-size:12px;
+  font-weight:500;
+  color: var(--white);
+  letter-spacing:0.02em;
+  display:flex; align-items:center; gap:8px;
+}
+.col-dot{ width:8px;height:8px;border-radius:50%;}
+.col-new .col-dot{ background: var(--info); box-shadow:0 0 6px var(--info)}
+.col-work .col-dot{ background: var(--warning); box-shadow:0 0 6px var(--warning)}
+.col-wait .col-dot{ background: var(--ink-300)}
+.col-done .col-dot{ background: var(--success); box-shadow:0 0 6px var(--success)}
+.kanban-count{
+  font-size:11px; color: var(--ink-300);
+  background: var(--glass);
+  padding: 2px 8px; border-radius:8px;
+  font-family:var(--font-mono);
+}
+
+.ticket{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012));
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding: 12px;
+  margin-bottom:10px;
+  cursor:pointer;
+  transition: all 0.2s;
+  position:relative;
+}
+.ticket:hover{ border-color: var(--line-strong); transform: translateY(-1px)}
+.ticket.old{
+  border-color: rgba(248,113,113,0.3);
+  background: linear-gradient(180deg, rgba(248,113,113,0.06), rgba(248,113,113,0.02));
+}
+.ticket.old::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: var(--danger);
+  border-radius:10px 10px 0 0;
+}
+.ticket-head{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:8px;
+}
+.ticket-cat{
+  font-size:10px;
+  padding: 2px 7px;
+  background: var(--glass-strong);
+  border:1px solid var(--line);
+  border-radius:5px;
+  color: var(--ink-200);
+  font-weight:500;
+}
+.ticket-prio{
+  width:8px; height:8px; border-radius:50%;
+}
+.ticket-prio.high{ background: var(--danger); box-shadow: 0 0 6px var(--danger)}
+.ticket-prio.mid{ background: var(--warning)}
+.ticket-prio.low{ background: var(--info)}
+.ticket-title{
+  font-size:13px; color: var(--white);
+  font-weight:500;
+  line-height:1.35;
+  letter-spacing:-0.005em;
+  margin-bottom:4px;
+}
+.ticket-customer{
+  font-size:11px; color: var(--ink-300);
+  margin-bottom:8px;
+}
+.ticket-foot{
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:10px; color: var(--ink-400);
+  font-family:var(--font-mono);
+}
+.ticket-foot .age{
+  color: var(--ink-300);
+}
+.ticket.old .age{ color: var(--danger); font-weight:500}
+
+/* ============================================================
+   KNOWLEDGE BASE
+   ============================================================ */
+.kb-grid{
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  gap:20px;
+  height: calc(100vh - 220px);
+}
+.kb-side{
+  background: rgba(0,0,0,0.18);
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  overflow-y:auto;
+}
+.kb-cat{
+  padding: 9px 12px;
+  border-radius:8px;
+  font-size:13px;
+  color: var(--ink-200);
+  cursor:pointer;
+  display:flex; align-items:center; gap:10px;
+  transition: all 0.18s;
+  margin-bottom:2px;
+}
+.kb-cat:hover{ background: var(--glass); color: var(--white)}
+.kb-cat.active{
+  background: rgba(45,212,191,0.1);
+  color: var(--teal-300);
+  border:1px solid rgba(45,212,191,0.2);
+}
+.kb-cat .ic{ width:16px; height:16px}
+.kb-cat .count{ margin-left:auto; font-size:10px; color: var(--ink-400); font-family:var(--font-mono)}
+
+.kb-main{
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008));
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  overflow-y:auto;
+}
+.kb-article-list{ display:grid; gap:12px}
+.kb-article{
+  padding: 16px 18px;
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--glass);
+  cursor:pointer;
+  transition: all 0.2s;
+}
+.kb-article:hover{ border-color: rgba(45,212,191,0.3); background: var(--glass-strong)}
+.kb-article h4{
+  font-size:14px; color: var(--white);
+  font-weight:500; letter-spacing:-0.005em;
+  margin-bottom:6px;
+}
+.kb-article p{
+  font-size:12.5px; color: var(--ink-300); line-height:1.5;
+}
+.kb-article .meta{
+  font-size:10.5px; color: var(--ink-400);
+  margin-top:8px;
+  display:flex; gap:12px;
+  font-family:var(--font-mono);
+}
+
+/* ============================================================
+   DOCUMENT LIBRARY
+   ============================================================ */
+.doc-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap:16px;
+}
+.doc-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012));
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  cursor:pointer;
+  transition: all 0.25s;
+}
+.doc-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(45,212,191,0.3);
+  box-shadow: var(--shadow-lg);
+}
+.doc-preview{
+  aspect-ratio: 4/3;
+  background:
+    linear-gradient(135deg, var(--navy-700), var(--navy-800));
+  position:relative;
+  display:grid; place-items:center;
+  overflow:hidden;
+}
+.doc-preview::after{
+  content:''; position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(45,212,191,0.15), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(96,165,250,0.1), transparent 50%);
+}
+.doc-preview .doc-icon{
+  width:48px; height:48px;
+  color: var(--teal-300);
+  position:relative; z-index:1;
+  filter: drop-shadow(0 4px 12px rgba(45,212,191,0.4));
+}
+.doc-preview .doc-type{
+  position:absolute; top:10px; right:10px;
+  font-size:10px;
+  padding: 3px 8px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  border:1px solid var(--line);
+  border-radius:5px;
+  color: var(--teal-300);
+  font-family:var(--font-mono);
+  font-weight:500;
+  z-index:2;
+}
+.doc-info{ padding: 14px 16px}
+.doc-name{
+  font-size:13.5px; color: var(--white);
+  font-weight:500; letter-spacing:-0.005em;
+  margin-bottom:4px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.doc-meta{
+  font-size:11px; color: var(--ink-400);
+  font-family:var(--font-mono);
+}
+
+/* ============================================================
+   REFERRALS
+   ============================================================ */
+.referral-banner{
+  background:
+    radial-gradient(400px 200px at 20% 0%, rgba(45,212,191,0.18), transparent 60%),
+    linear-gradient(135deg, rgba(45,212,191,0.06), rgba(96,165,250,0.04));
+  border:1px solid rgba(45,212,191,0.25);
+  border-radius: var(--radius-xl);
+  padding: 26px 28px;
+  margin-bottom:24px;
+  display:flex; align-items:center; gap:24px;
+  position:relative; overflow:hidden;
+}
+.referral-banner .gift{
+  font-size:56px;
+  filter: drop-shadow(0 4px 12px rgba(45,212,191,0.3));
+}
+.referral-banner h3{
+  font-family:var(--font-display);
+  font-size:28px; color: var(--white);
+  letter-spacing:-0.02em;
+  margin-bottom:6px;
+}
+.referral-banner p{ color: var(--ink-200); font-size:13.5px; max-width:520px; line-height:1.5}
+
+.referral-leaderboard{
+  display:flex; flex-direction:column; gap:8px;
+}
+.leader-row{
+  display:grid;
+  grid-template-columns: 32px 32px 1fr auto auto;
+  gap:12px;
+  align-items:center;
+  padding: 10px 14px;
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  transition: all 0.2s;
+}
+.leader-row:hover{ background: var(--glass-strong)}
+.leader-rank{
+  font-family:var(--font-display);
+  font-size:18px;
+  color: var(--ink-300);
+  text-align:center;
+}
+.leader-rank.gold{ color: #FFD54F; text-shadow: 0 0 8px rgba(255,213,79,0.4)}
+.leader-rank.silver{ color: #CBD5E1; text-shadow: 0 0 8px rgba(203,213,225,0.3)}
+.leader-rank.bronze{ color: #FB923C; text-shadow: 0 0 8px rgba(251,146,60,0.3)}
+.leader-avatar{
+  width:32px; height:32px; border-radius:50%;
+  background: linear-gradient(135deg, #1e3a8a, var(--teal-500));
+  display:grid; place-items:center;
+  font-weight:600; font-size:12px; color:white;
+}
+.leader-name{ font-size:13px; color: var(--white); font-weight:500}
+.leader-count{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color: var(--teal-300);
+  background: rgba(45,212,191,0.1);
+  padding: 4px 10px;
+  border-radius:6px;
+}
+
+/* Templates */
+.template-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  gap:16px;
+}
+.template-card{
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  cursor:pointer;
+  transition: all 0.2s;
+}
+.template-card:hover{ border-color: rgba(45,212,191,0.3); background: var(--glass-strong)}
+.template-card .label{
+  font-size:11px; color: var(--teal-300);
+  letter-spacing:0.06em; text-transform:uppercase;
+  font-weight:500; margin-bottom:8px;
+  display:flex; align-items:center; gap:6px;
+}
+.template-card .preview{
+  font-size:12.5px; color: var(--ink-200);
+  line-height:1.55;
+  background: rgba(0,0,0,0.2);
+  padding: 12px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  max-height:120px;
+  overflow:hidden;
+  position:relative;
+}
+.template-card .preview::after{
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:40px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.4));
+  pointer-events:none;
+}
+.template-card .actions{
+  display:flex; gap:8px;
+}
+.copy-btn{
+  padding: 6px 10px;
+  background: var(--glass-strong);
+  border:1px solid var(--line);
+  border-radius:6px;
+  color: var(--ink-200);
+  font-size:11px;
+  cursor:pointer;
+  flex:1; text-align:center;
+}
+.copy-btn:hover{ color: var(--teal-300); border-color: rgba(45,212,191,0.3)}
+.copy-btn.done{ color: var(--success); border-color: rgba(52,211,153,0.3)}
+.copy-btn.danger{ flex:0 0 auto; color: var(--danger); border-color: rgba(248,113,113,0.2); padding: 6px 10px}
+.copy-btn.danger:hover{ background: rgba(248,113,113,0.12); color: var(--danger); border-color: rgba(248,113,113,0.4)}
+
+/* Delete button variants for cards */
+.mini-btn.danger{
+  color: var(--danger);
+  border-color: rgba(248,113,113,0.2);
+  background: rgba(248,113,113,0.06);
+  margin-left:auto;
+}
+.mini-btn.danger:hover{
+  background: rgba(248,113,113,0.16);
+  border-color: rgba(248,113,113,0.45);
+  color: var(--danger);
+}
+
+/* Leaderboard delete */
+.leader-del{
+  opacity:0;
+  cursor:pointer;
+  padding:4px 8px;
+  border-radius:6px;
+  background: rgba(248,113,113,0.08);
+  color: var(--danger);
+  font-size:11px;
+  transition: opacity 0.18s, background 0.18s;
+  border:1px solid rgba(248,113,113,0.18);
+}
+.leader-row:hover .leader-del{ opacity:1 }
+.leader-del:hover{ background: rgba(248,113,113,0.18) }
+
+/* Knowledge article delete */
+.kb-del{
+  margin-left:auto !important;
+  cursor:pointer;
+  padding:3px 8px;
+  border-radius:6px;
+  background: rgba(248,113,113,0.06);
+  color: var(--danger) !important;
+  border:1px solid rgba(248,113,113,0.18);
+  opacity:0;
+  transition: opacity 0.18s, background 0.18s;
+}
+.kb-article:hover .kb-del{ opacity:1 }
+.kb-del:hover{ background: rgba(248,113,113,0.16) }
+
+/* Document delete overlay */
+.doc-del{
+  position:absolute;
+  top:10px; left:10px;
+  z-index:3;
+  width:28px; height:28px;
+  border-radius:8px;
+  background: rgba(248,113,113,0.12);
+  border:1px solid rgba(248,113,113,0.28);
+  color: var(--danger);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  opacity:0;
+  backdrop-filter: blur(6px);
+  transition: opacity 0.18s, background 0.18s, transform 0.15s;
+}
+.doc-card:hover .doc-del{ opacity:1 }
+.doc-del:hover{ background: rgba(248,113,113,0.28); transform: scale(1.05) }
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-backdrop{
+  position:fixed; inset:0;
+  background: rgba(2,6,17,0.7);
+  backdrop-filter: blur(10px);
+  display:none;
+  align-items:center; justify-content:center;
+  z-index:100;
+  animation: fadeIn 0.2s;
+}
+.modal-backdrop.open{ display:flex}
+.modal{
+  background: linear-gradient(180deg, var(--navy-800), var(--navy-900));
+  border:1px solid var(--line-strong);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  width: min(640px, 92vw);
+  max-height: 88vh;
+  overflow-y:auto;
+  box-shadow: var(--shadow-lg);
+  animation: modalIn 0.3s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes modalIn{
+  from{ opacity:0; transform: scale(0.96) translateY(8px)}
+  to{ opacity:1; transform:scale(1) translateY(0)}
+}
+.modal-head{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:22px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--line);
+}
+.modal-title{
+  font-family:var(--font-display);
+  font-size:26px;
+  color: var(--white);
+  letter-spacing:-0.02em;
+}
+.modal-close{
+  background:transparent;
+  border:1px solid var(--line);
+  color: var(--ink-200);
+  width:34px; height:34px;
+  border-radius:8px;
+  cursor:pointer;
+  display:grid; place-items:center;
+}
+.modal-close:hover{ background: var(--glass); color: var(--white)}
+
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+}
+.form-row{
+  display:flex; flex-direction:column; gap:6px;
+}
+.form-row.full{ grid-column: span 2}
+.form-label{
+  font-size:11px;
+  color: var(--ink-300);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  font-weight:500;
+}
+.form-input, .form-select, .form-textarea{
+  background: rgba(0,0,0,0.25);
+  border:1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size:13.5px;
+  transition: all 0.18s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus{
+  outline:none;
+  border-color: rgba(45,212,191,0.4);
+  background: rgba(0,0,0,0.4);
+  box-shadow: 0 0 0 3px rgba(45,212,191,0.08);
+}
+.form-textarea{ min-height: 80px; resize: vertical; font-family: var(--font-body)}
+.form-select option{ background: var(--navy-800)}
+.modal-foot{
+  display:flex; justify-content:flex-end; gap:10px;
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+
+/* Empty states */
+.empty{
+  text-align:center;
+  padding: 60px 20px;
+  color: var(--ink-300);
+}
+.empty .ic{
+  width:56px; height:56px;
+  margin: 0 auto 16px;
+  background: var(--glass);
+  border:1px solid var(--line);
+  border-radius:16px;
+  display:grid; place-items:center;
+  color: var(--teal-300);
+}
+.empty h4{
+  font-family: var(--font-display);
+  font-size:22px;
+  color: var(--white);
+  margin-bottom:8px;
+}
+.empty p{ font-size:13px; max-width:380px; margin: 0 auto 16px}
+
+/* Toast */
+.toast{
+  position:fixed;
+  bottom:24px; right:24px;
+  padding: 12px 18px;
+  background: linear-gradient(180deg, var(--navy-700), var(--navy-800));
+  border:1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size:13px;
+  color: var(--white);
+  box-shadow: var(--shadow-lg);
+  z-index:200;
+  transform: translateY(20px);
+  opacity:0;
+  transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+  display:flex; align-items:center; gap:10px;
+}
+.toast.show{ transform: translateY(0); opacity:1}
+.toast.success{ border-color: rgba(52,211,153,0.4)}
+.toast .ic{ color: var(--success)}
+
+/* Loading shimmer for first load */
+.shimmer{
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer{
+  0%{ background-position: -200% 0}
+  100%{ background-position: 200% 0}
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .app{ grid-template-columns: 72px 1fr}
+  .brand-text, .nav-item span:not(.icon):not(.badge), .nav-section, .user-info{ display:none}
+  .nav-item{ justify-content:center; padding: 10px}
+  .nav-item.active::before{ left:-8px}
+  .kpi-grid{ grid-template-columns: repeat(2,1fr)}
+  .hero-card{ grid-template-columns: 1fr}
+  .dashboard-grid{ grid-template-columns: 1fr}
+  .dashboard-grid .row{ grid-template-columns: 1fr}
+  .kanban{ grid-template-columns: repeat(2,1fr)}
+  .kb-grid{ grid-template-columns: 1fr}
+  .form-grid{ grid-template-columns: 1fr}
+  .form-row.full{ grid-column: span 1}
+}
+
+/* Misc utilities */
+.spacer-lg{ height: 28px}
+.divider{ height:1px; background: var(--line); margin: 18px 0}
+.flex{ display:flex; align-items:center; gap:10px}
+.section-title{
+  font-family: var(--font-display);
+  font-size:24px;
+  color: var(--white);
+  letter-spacing:-0.015em;
+  margin: 28px 0 16px;
+}
+.section-title.first{ margin-top:0}
+
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ============== SIDEBAR ============== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="name">REAL NRG</div>
+        <div class="sub">Founder OS</div>
+      </div>
+    </div>
+
+    <div class="nav-section">Workspace</div>
+    <div class="nav-item active" data-page="dashboard">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span>
+      <span>Control Center</span>
+    </div>
+    <div class="nav-item" data-page="distributors">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+      <span>Distributoren</span>
+      <span class="badge" id="nav-dist-count">8</span>
+    </div>
+    <div class="nav-item" data-page="nacharbeit">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+      <span>Nacharbeit</span>
+      <span class="badge" id="nav-nach-count">12</span>
+    </div>
+    <div class="nav-item" data-page="partners">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span>Partner-Netzwerk</span>
+    </div>
+    <div class="nav-item" data-page="referrals">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+      <span>KwK Empfehlung</span>
+    </div>
+
+    <div class="nav-section">Resources</div>
+    <div class="nav-item" data-page="knowledge">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+      <span>Knowledge Base</span>
+    </div>
+    <div class="nav-item" data-page="library">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+      <span>Dokumente</span>
+    </div>
+    <div class="nav-item" data-page="insights">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span>Insights</span>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar" id="user-initials">RN</div>
+        <div class="user-info">
+          <div class="uname">Founder</div>
+          <div class="urole">REAL NRG · Pro</div>
+        </div>
+        <div class="user-status" title="Online"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============== MAIN ============== -->
+  <main class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="global-search" type="text" placeholder="Suchen — Distributoren, Tickets, Wissen, Dokumente…">
+        <kbd>⌘K</kbd>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" title="Befehl">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3h3v3M14 21H3v-7M3 8V3h5M21 14v7h-7"/></svg>
+        </button>
+        <button class="icon-btn" title="Benachrichtigungen">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="dot"></span>
+        </button>
+        <button class="btn btn-primary" id="quick-create-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Quick Create
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- ============================================================
+           PAGE: CONTROL CENTER / DASHBOARD
+           ============================================================ -->
+      <section class="page active" data-page="dashboard">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Guten <em id="greet-time">Morgen</em><span style="color:var(--white)">.</span></div>
+            <div class="page-sub" id="greet-sub">Donnerstag, 21. Mai 2026 · Hier ist dein Fokus für heute.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-ghost" onclick="setView('focus')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              Fokus-Modus
+            </button>
+            <button class="btn btn-primary" onclick="openModal('quick-task')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Neue Priorität
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero -->
+        <div class="hero-card" style="margin-bottom:24px">
+          <div>
+            <div class="hero-eyebrow">
+              <span class="live">LIVE STATUS</span>
+              <span>Operating tempo · Strong</span>
+            </div>
+            <div class="hero-title">Heute ist der Hebel <em>Nacharbeit & Partner-Follow-Up</em>.</div>
+            <div class="hero-text">5 Tickets älter als 7 Tage erfordern Zugriff. 3 ruhende Partner würden ein Reaktivierungs-Signal honorieren. Dein höchster Umsatz-ROI heute liegt nicht bei neuen Leads, sondern bei der Aktivierung von bereits warmen Kontakten.</div>
+            <div class="flex">
+              <button class="btn btn-primary" onclick="goPage('nacharbeit')">
+                Nacharbeit öffnen
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+              <button class="btn btn-ghost" onclick="goPage('partners')">Partner ansehen</button>
+            </div>
+          </div>
+          <div>
+            <div class="focus-block">
+              <div class="label">Heute · Top Priorität</div>
+              <div class="value" id="top-prio-text">MaLo-ID Klärung für Kunde Schneider GmbH</div>
+              <div class="meta">↳ blockiert Vertragsstart · seit 4 Tagen offen</div>
+            </div>
+            <div class="focus-block">
+              <div class="label">Monatsziel</div>
+              <div class="value">47 / 60 Verträge im Mai</div>
+              <div class="goal-track" style="margin-top:10px"><div class="goal-fill" style="width:78%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="label"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> Abschlüsse · Mai</div>
+            <div class="value" id="kpi-deals">47</div>
+            <div class="trend">▲ 23% vs. April</div>
+            <svg class="sparkline" viewBox="0 0 70 32"><polyline points="0,24 10,20 20,22 30,16 40,18 50,10 60,12 70,6" fill="none" stroke="var(--teal-400)" stroke-width="1.5"/></svg>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Provisionen offen</div>
+            <div class="value" id="kpi-provision">€ 8.4k</div>
+            <div class="trend">▲ €1.2k diese Woche</div>
+            <svg class="sparkline" viewBox="0 0 70 32"><polyline points="0,28 10,26 20,22 30,24 40,18 50,16 60,12 70,8" fill="none" stroke="var(--teal-400)" stroke-width="1.5"/></svg>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> Nacharbeit aktiv</div>
+            <div class="value" id="kpi-tickets">12</div>
+            <div class="trend down">▲ 3 alt &gt;7 Tage</div>
+            <svg class="sparkline" viewBox="0 0 70 32"><polyline points="0,16 10,18 20,14 30,20 40,16 50,22 60,18 70,14" fill="none" stroke="var(--danger)" stroke-width="1.5"/></svg>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg></span> Empfehlungen · Mai</div>
+            <div class="value" id="kpi-refs">14</div>
+            <div class="trend">▲ Bester Monat 2026</div>
+            <svg class="sparkline" viewBox="0 0 70 32"><polyline points="0,28 10,26 20,20 30,22 40,14 50,12 60,8 70,4" fill="none" stroke="var(--teal-400)" stroke-width="1.5"/></svg>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+          <div>
+            <!-- Today's Priorities -->
+            <div class="card" style="margin-bottom:20px">
+              <div class="card-head">
+                <div class="card-title"><span class="pulse-dot"></span>Heutige Prioritäten</div>
+                <button class="icon-btn" style="width:30px;height:30px" onclick="openModal('quick-task')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+              </div>
+              <div id="priorities-list"></div>
+            </div>
+
+            <div class="row">
+              <!-- Top Distributor -->
+              <div class="card">
+                <div class="card-head">
+                  <div class="card-title">Top Distributor · Mai</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px">
+                  <div class="entity-logo">EX</div>
+                  <div>
+                    <div style="font-size:16px; color:var(--white); font-weight:500">Extra Energy</div>
+                    <div style="font-size:12px; color:var(--ink-300); margin-top:3px">18 Abschlüsse · €3.240 Provision</div>
+                    <div style="display:flex; gap:4px; margin-top:8px">
+                      <div class="tag good">Schnell zahlt</div>
+                      <div class="tag good">Gewerbe ✓</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Reactivation Suggestion -->
+              <div class="card">
+                <div class="card-head">
+                  <div class="card-title">💡 AI Vorschlag</div>
+                </div>
+                <div style="font-size:13.5px; color:var(--ink-100); line-height:1.55">
+                  <b style="color:var(--teal-300)">Markus Lehmann</b> (Makler) hat seit 38 Tagen nicht empfohlen. Letzter Deal brachte <b>€2.100</b>. Ein kurzer Anruf könnte 2-3 neue Leads bringen.
+                </div>
+                <button class="btn btn-ghost" style="margin-top:14px; width:100%; justify-content:center" onclick="goPage('partners')">Partner reaktivieren →</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <!-- Goals -->
+            <div class="card" style="margin-bottom:20px">
+              <div class="card-head">
+                <div class="card-title">Monatsziele · Mai</div>
+                <span style="font-size:11px; color:var(--ink-300); font-family:var(--font-mono)">10 Tage verbleibend</span>
+              </div>
+              <div class="goal-row">
+                <div class="goal-head"><span>Abschlüsse</span><span class="val">47 / 60</span></div>
+                <div class="goal-track"><div class="goal-fill" style="width:78%"></div></div>
+              </div>
+              <div class="goal-row">
+                <div class="goal-head"><span>Empfehlungen</span><span class="val">14 / 20</span></div>
+                <div class="goal-track"><div class="goal-fill" style="width:70%"></div></div>
+              </div>
+              <div class="goal-row">
+                <div class="goal-head"><span>Gewerbe-Verträge</span><span class="val">6 / 15</span></div>
+                <div class="goal-track"><div class="goal-fill warn" style="width:40%"></div></div>
+              </div>
+              <div class="goal-row">
+                <div class="goal-head"><span>Provision</span><span class="val">€8.4k / €12k</span></div>
+                <div class="goal-track"><div class="goal-fill" style="width:70%"></div></div>
+              </div>
+            </div>
+
+            <!-- Activity -->
+            <div class="card">
+              <div class="card-head">
+                <div class="card-title">Letzte Aktivitäten</div>
+              </div>
+              <div id="activity-feed"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PAGE: DISTRIBUTORS
+           ============================================================ -->
+      <section class="page" data-page="distributors">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Distributor <em>Hub</em></div>
+            <div class="page-sub">Alle Anbieter, Provisionen und Konditionen auf einen Blick.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Import</button>
+            <button class="btn btn-primary" onclick="openModal('add-distributor')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Distributor hinzufügen
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="chip active" data-dist-filter="all">Alle <span class="count" id="dist-count-all">0</span></div>
+          <div class="chip" data-dist-filter="fav">★ Favoriten</div>
+          <div class="chip" data-dist-filter="gewerbe">Gewerbe ✓</div>
+          <div class="chip" data-dist-filter="bonitaet">Mit Bonität</div>
+          <div class="chip" data-dist-filter="fast">Schnell zahlt</div>
+          <div class="chip" data-dist-filter="problem">⚠ Probleme</div>
+          <div style="flex:1"></div>
+          <div class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Sortieren: Bewertung</div>
+        </div>
+
+        <div class="entity-grid" id="distributor-grid"></div>
+      </section>
+
+      <!-- ============================================================
+           PAGE: NACHARBEIT
+           ============================================================ -->
+      <section class="page" data-page="nacharbeit">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Nacharbeit <em>Center</em></div>
+            <div class="page-sub">Modernes Ticket-System. Schnell durchklicken, schnell schließen.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-ghost" onclick="toggleNachView()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>
+              <span id="nach-view-label">Board-Ansicht</span>
+            </button>
+            <button class="btn btn-primary" onclick="openModal('add-ticket')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Neues Ticket
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="chip active" data-nach-filter="all">Alle <span class="count" id="nach-count-all">0</span></div>
+          <div class="chip" data-nach-filter="malo">Fehlende MaLo</div>
+          <div class="chip" data-nach-filter="netz">Netzsperre</div>
+          <div class="chip" data-nach-filter="doppel">Doppelbelieferung</div>
+          <div class="chip" data-nach-filter="kein-kontakt">Kunde antw. nicht</div>
+          <div class="chip" data-nach-filter="ablehnung">Anbieter lehnt ab</div>
+          <div class="chip" data-nach-filter="kuendigung">Kündigung</div>
+          <div class="chip" data-nach-filter="abschlag">Abschlag falsch</div>
+          <div class="chip" data-nach-filter="rueckruf">Rückruf</div>
+          <div class="chip" data-nach-filter="verzoegert">Verzögert</div>
+          <div class="chip" data-nach-filter="unterlagen">Unterlagen fehlen</div>
+        </div>
+
+        <div class="kanban" id="kanban-board"></div>
+      </section>
+
+      <!-- ============================================================
+           PAGE: PARTNERS
+           ============================================================ -->
+      <section class="page" data-page="partners">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Partner & <em>Empfehlungsnetzwerk</em></div>
+            <div class="page-sub">Wer bringt Umsatz · wer braucht Reaktivierung · wer ist still.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-primary" onclick="openModal('add-partner')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Partner hinzufügen
+            </button>
+          </div>
+        </div>
+
+        <!-- Partner KPIs -->
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="label"><span class="ic">🤝</span> Aktive Partner</div>
+            <div class="value" id="p-active">9</div>
+            <div class="trend">▲ 2 diesen Monat</div>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic">€</span> Umsatz · Partner</div>
+            <div class="value" id="p-revenue">€21.5k</div>
+            <div class="trend">▲ 47% YTD</div>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic">⚡</span> Empfehlungen YTD</div>
+            <div class="value" id="p-refs">63</div>
+            <div class="trend">⌀ 7/Monat</div>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic">💤</span> Reaktivieren</div>
+            <div class="value" id="p-sleep">3</div>
+            <div class="trend down">&gt; 30 Tage still</div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="chip active" data-partner-filter="all">Alle</div>
+          <div class="chip" data-partner-filter="immobilien">Immobilienmakler</div>
+          <div class="chip" data-partner-filter="versicherung">Versicherung</div>
+          <div class="chip" data-partner-filter="finanz">Finanz</div>
+          <div class="chip" data-partner-filter="waermepumpe">Wärmepumpe</div>
+          <div class="chip" data-partner-filter="solar">Solar</div>
+          <div class="chip" data-partner-filter="internet">Internet</div>
+          <div class="chip" data-partner-filter="handwerk">Handwerk</div>
+          <div class="chip" data-partner-filter="creator">Creator</div>
+          <div class="chip" data-partner-filter="unternehmer">Unternehmer</div>
+        </div>
+
+        <div class="entity-grid" id="partner-grid"></div>
+      </section>
+
+      <!-- ============================================================
+           PAGE: REFERRALS / KwK
+           ============================================================ -->
+      <section class="page" data-page="referrals">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Kunde wirbt <em>Kunde</em></div>
+            <div class="page-sub">Empfehlungssystem · Belohnungen · Templates · Tracking.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-ghost" onclick="copyText(referralLink, 'Empfehlungslink kopiert')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Link kopieren
+            </button>
+            <button class="btn btn-primary" onclick="openModal('add-referral')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Empfehlung erfassen
+            </button>
+          </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="referral-banner">
+          <div class="gift">🎁</div>
+          <div style="flex:1">
+            <h3>Empfehle 3 Freunde — erhalte €75 Amazon-Gutschein.</h3>
+            <p>Standard-Empfehlung: €25 Amazon. Premium-Kampagne aktiv: 3-Freunde-Bonus. Ideal für Kunden direkt nach erfolgreichem Wechsel.</p>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px; color:var(--ink-300); letter-spacing:0.1em; text-transform:uppercase">Aktiv seit</div>
+            <div style="font-family:var(--font-display); font-size:24px; color:var(--white)">14 Tagen</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Templates -->
+          <div>
+            <div class="section-title first">📱 WhatsApp Vorlagen</div>
+            <div class="template-grid" id="template-grid"></div>
+
+            <div class="section-title">⚡ Empfehlungslink & QR</div>
+            <div class="card">
+              <div style="display:grid; grid-template-columns: 1fr auto; gap:20px; align-items:center">
+                <div>
+                  <div style="font-size:11px; color:var(--ink-300); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px">Dein persönlicher Empfehlungslink</div>
+                  <div style="font-family:var(--font-mono); font-size:13px; color:var(--teal-300); background:rgba(0,0,0,0.3); padding:10px 14px; border-radius:8px; border:1px solid var(--line); margin-bottom:10px" id="referral-link-text">realnrg.de/r/founder-2026</div>
+                  <button class="btn btn-ghost" style="font-size:12px" onclick="copyText(referralLink, 'Link kopiert ✓')">Link kopieren</button>
+                  <button class="btn btn-ghost" style="font-size:12px" onclick="downloadQR()">QR-Code laden</button>
+                </div>
+                <div id="qr-container" style="background:white; padding:12px; border-radius:12px; display:grid; place-items:center"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leaderboard + Tipps -->
+          <div>
+            <div class="section-title first">🏆 Top Empfehlungsgeber</div>
+            <div class="card">
+              <div class="referral-leaderboard" id="leaderboard"></div>
+            </div>
+
+            <div class="section-title">💡 Mehr Empfehlungen generieren</div>
+            <div class="card">
+              <div style="font-size:13px; line-height:1.65; color:var(--ink-100)">
+                <div style="margin-bottom:10px"><b style="color:var(--teal-300)">1.</b> Frage direkt nach erfolgreicher Belieferung — Timing schlägt Höflichkeit.</div>
+                <div style="margin-bottom:10px"><b style="color:var(--teal-300)">2.</b> Sende WhatsApp-Vorlage mit Direkt-Link statt "schick mir die Nummer".</div>
+                <div style="margin-bottom:10px"><b style="color:var(--teal-300)">3.</b> Belohnung bei <em>Vertragsabschluss</em> auszahlen, nicht bei Kontakt.</div>
+                <div style="margin-bottom:10px"><b style="color:var(--teal-300)">4.</b> Google-Bewertung im selben Atemzug erfragen — doppelter Effekt.</div>
+                <div><b style="color:var(--teal-300)">5.</b> Top-Empfehler mit kleinem persönlichen Goodie überraschen (nicht angekündigt).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PAGE: KNOWLEDGE BASE
+           ============================================================ -->
+      <section class="page" data-page="knowledge">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Knowledge <em>Base</em></div>
+            <div class="page-sub">Dein persönliches Energy-Wiki — Anbieter, Netzbetreiber, SOPs, schwierige Fälle.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-primary" onclick="openModal('add-knowledge')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Artikel hinzufügen
+            </button>
+          </div>
+        </div>
+
+        <div class="kb-grid">
+          <div class="kb-side" id="kb-categories"></div>
+          <div class="kb-main">
+            <div id="kb-article-area"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PAGE: DOCUMENT LIBRARY
+           ============================================================ -->
+      <section class="page" data-page="library">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Document <em>Library</em></div>
+            <div class="page-sub">Präsentationen · Preisübersichten · Verträge · Branding · Schulungen.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-primary" onclick="openModal('add-document')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Dokument hinzufügen
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="chip active" data-doc-filter="all">Alle</div>
+          <div class="chip" data-doc-filter="praes">Präsentationen</div>
+          <div class="chip" data-doc-filter="preis">Preisübersichten</div>
+          <div class="chip" data-doc-filter="gewerbe">Gewerbeangebote</div>
+          <div class="chip" data-doc-filter="branding">Branding & Logos</div>
+          <div class="chip" data-doc-filter="marketing">Marketing</div>
+          <div class="chip" data-doc-filter="vertrag">Verträge</div>
+          <div class="chip" data-doc-filter="vorlage">Vorlagen</div>
+          <div class="chip" data-doc-filter="schulung">Schulung</div>
+          <div class="chip" data-doc-filter="fav">★ Favoriten</div>
+        </div>
+
+        <div class="doc-grid" id="doc-grid"></div>
+      </section>
+
+      <!-- ============================================================
+           PAGE: INSIGHTS (Bonus: Analytics)
+           ============================================================ -->
+      <section class="page" data-page="insights">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Business <em>Insights</em></div>
+            <div class="page-sub">Auswertungen für klare Entscheidungen — woher kommt Umsatz, wo verlierst du Zeit.</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-ghost">Zeitraum: Mai 2026 ▾</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="label"><span class="ic">€</span> Umsatz Mai</div>
+            <div class="value">€11.2k</div>
+            <div class="trend">▲ 18% vs. April</div>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic">⌀</span> Provision/Vertrag</div>
+            <div class="value">€238</div>
+            <div class="trend">▲ €22</div>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic">⏱</span> Zeit/Nacharbeit</div>
+            <div class="value">14 min</div>
+            <div class="trend">▼ 22% schneller</div>
+          </div>
+          <div class="kpi">
+            <div class="label"><span class="ic">%</span> Empfehlungsquote</div>
+            <div class="value">31%</div>
+            <div class="trend">▲ Branchenschnitt 12%</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">Umsatz nach Distributor · Mai</div>
+            </div>
+            <div id="dist-revenue-chart"></div>
+          </div>
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">Probleme nach Kategorie</div>
+            </div>
+            <div id="problem-chart"></div>
+          </div>
+        </div>
+
+        <div class="spacer-lg"></div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">🎯 Smart Insights</div>
+          </div>
+          <div style="display:grid; gap:14px">
+            <div style="padding:14px 16px; border-left:3px solid var(--teal-400); background: rgba(45,212,191,0.05); border-radius:8px">
+              <div style="font-size:13.5px; color:var(--white); margin-bottom:4px"><b>Gewerbe ist dein höchster Hebel.</b></div>
+              <div style="font-size:12.5px; color:var(--ink-300); line-height:1.5">Du machst 6 Gewerbe-Verträge/Monat — aber dein Provisionsschnitt dort liegt bei €410 vs. €198 Privat. +5 Gewerbe = +€1.000 Umsatz ohne Mehraufwand.</div>
+            </div>
+            <div style="padding:14px 16px; border-left:3px solid var(--warning); background: rgba(251,191,36,0.05); border-radius:8px">
+              <div style="font-size:13.5px; color:var(--white); margin-bottom:4px"><b>Distributor X verursacht 41% deiner Nacharbeit.</b></div>
+              <div style="font-size:12.5px; color:var(--ink-300); line-height:1.5">Bei nur 18% Volumen — Provisions/Stunde-Quote ist hier am schlechtesten. Überlege, Zeit in Top-3 Distributoren zu verlagern.</div>
+            </div>
+            <div style="padding:14px 16px; border-left:3px solid var(--info); background: rgba(96,165,250,0.05); border-radius:8px">
+              <div style="font-size:13.5px; color:var(--white); margin-bottom:4px"><b>Donnerstags = Empfehlungs-Tag.</b></div>
+              <div style="font-size:12.5px; color:var(--ink-300); line-height:1.5">36% deiner Empfehlungen kommen Donnerstag/Freitag. Plane Nachfass-Calls bewusst um diesen Zyklus.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- ============================================================
+     MODAL: GENERIC
+     ============================================================ -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   STATE & STORAGE
+   ============================================================ */
+const STORAGE = {
+  async get(key){
+    try{ const r = await window.storage.get(key); return r ? JSON.parse(r.value) : null }
+    catch(e){ return null }
+  },
+  async set(key, val){
+    try{ await window.storage.set(key, JSON.stringify(val)); return true }
+    catch(e){ console.error('Storage error', e); return false }
+  }
+};
+
+const state = {
+  distributors: [],
+  tickets: [],
+  partners: [],
+  priorities: [],
+  referrals: [],
+  knowledge: [],
+  documents: [],
+  activeFilter: { dist:'all', nach:'all', partner:'all', doc:'all' },
+  activeKbCat: 'anbieter',
+  currentPage: 'dashboard'
+};
+
+const referralLink = 'realnrg.de/r/founder-2026';
+
+/* ============================================================
+   SEED DATA — only used on first load
+   ============================================================ */
+function seedDistributors(){
+  return [
+    {id:'d1', name:'Extra Energy', short:'EX', provision:'€180/Vertrag', payout:'10. d. Folgemonats', contact:'Markus Weber', phone:'+49 40 123456', email:'support@extra-energy.de', portal:'partner.extra-energy.de', gewerbe:true, bonitaet:true, rating:5, favorite:true, pros:['Schnell zahlt','Top Gewerbe','Stabile Pipeline'], cons:[], tags:['fav','gewerbe','bonitaet','fast'], notes:'Hauptpartner — höchste Conversion.', problems:'Keine bekannten Issues.'},
+    {id:'d2', name:'eprimo', short:'EP', provision:'€140/Vertrag', payout:'15. monatlich', contact:'Lisa Bauer', phone:'+49 6196 989-0', email:'partner@eprimo.de', portal:'vertrieb.eprimo.de', gewerbe:false, bonitaet:true, rating:4, favorite:true, pros:['Schnelle Belieferung','Faire Tarife'], cons:['Kein Gewerbe'], tags:['fav','bonitaet','fast'], notes:'Solide für Privatkunden.', problems:'Manchmal Verzögerung bei MaLo-ID Klärung.'},
+    {id:'d3', name:'Vattenfall', short:'VF', provision:'€110/Vertrag', payout:'Quartalsweise', contact:'Tim Schulz', phone:'+49 30 81820', email:'b2b@vattenfall.de', portal:'partner.vattenfall.de', gewerbe:true, bonitaet:true, rating:3, favorite:false, pros:['Großer Brand','Vertrauen'], cons:['Langsame Auszahlung','Bürokratisch'], tags:['gewerbe','bonitaet'], notes:'Gut für skeptische Kunden.', problems:'Quartalsauszahlung bremst Cashflow.'},
+    {id:'d4', name:'Lichtblick', short:'LB', provision:'€155/Vertrag', payout:'14 Tage', contact:'Anna Krüger', phone:'+49 40 6360-1000', email:'partner@lichtblick.de', portal:'partner.lichtblick.de', gewerbe:false, bonitaet:false, rating:4, favorite:false, pros:['Schnelle Zahlung','Grünstrom-Story'], cons:['Kein Gewerbe','Begrenzte Bonität'], tags:['fast'], notes:'Stark für Öko-affine Kunden.', problems:''},
+    {id:'d5', name:'E.ON', short:'EO', provision:'€125/Vertrag', payout:'Monatlich', contact:'Stefan Müller', phone:'+49 201 184-0', email:'partnerprogramm@eon.de', portal:'partner.eon.de', gewerbe:true, bonitaet:true, rating:4, favorite:false, pros:['Breite Tarifpalette','Solide Gewerbe'], cons:['Mittlere Provision'], tags:['gewerbe','bonitaet'], notes:'Solider Mid-Tier Partner.', problems:''},
+    {id:'d6', name:'Yello Strom', short:'YS', provision:'€135/Vertrag', payout:'Monatlich', contact:'Petra Hoffmann', phone:'+49 221 263-0', email:'vertrieb@yellostrom.de', portal:'partner.yello.de', gewerbe:false, bonitaet:true, rating:3, favorite:false, pros:['Bekannte Marke'], cons:['Manchmal Probleme bei Doppelbelieferung'], tags:['bonitaet','problem'], notes:'Zuletzt häufiger Nacharbeit.', problems:'Kommunikation mit Backoffice langsam.'},
+    {id:'d7', name:'Süwag', short:'SW', provision:'€105/Vertrag', payout:'Monatlich', contact:'Hans Becker', phone:'+49 69 3107-0', email:'partner@suewag.de', portal:'partner.suewag.de', gewerbe:true, bonitaet:true, rating:3, favorite:false, pros:['Gut in Hessen','Regional stark'], cons:['Schwache Provision'], tags:['gewerbe','bonitaet'], notes:'Nur für lokales Geschäft.', problems:''},
+    {id:'d8', name:'1&1 Energy', short:'1E', provision:'€95/Vertrag', payout:'Monatlich', contact:'Robert Klein', phone:'+49 6373 7240-0', email:'energy-partner@1und1.net', portal:'partner.1und1.de', gewerbe:false, bonitaet:false, rating:2, favorite:false, pros:['Bekannter Brand'], cons:['Hohe Ablehnungsrate','Niedrige Provision'], tags:['problem'], notes:'Zurückhaltend einsetzen.', problems:'40% Ablehnungsquote zuletzt.'}
+  ];
+}
+
+function seedTickets(){
+  const now = Date.now();
+  const d = (days) => new Date(now - days*86400000).toISOString();
+  return [
+    {id:'t1', cat:'malo', title:'MaLo-ID fehlt — Schneider GmbH', customer:'Schneider GmbH · Köln', prio:'high', status:'work', created: d(4), notes:'Netzbetreiber RheinNetz angeschrieben, wartet auf Antwort.'},
+    {id:'t2', cat:'netz', title:'Netzsperre durch Vorlieferant', customer:'Familie Becker · Essen', prio:'high', status:'wait', created: d(9), notes:'Inkasso läuft, Kunde regelt direkt.'},
+    {id:'t3', cat:'doppel', title:'Doppelbelieferung mit Yello', customer:'M. Krause · Düsseldorf', prio:'mid', status:'new', created: d(1), notes:''},
+    {id:'t4', cat:'kein-kontakt', title:'Kunde antwortet seit 6 Tagen nicht', customer:'P. Hartmann · Bochum', prio:'mid', status:'work', created: d(6), notes:'WhatsApp + 2x Anruf versucht.'},
+    {id:'t5', cat:'ablehnung', title:'Bonitätsprüfung negativ bei E.ON', customer:'Café Linde · Dortmund', prio:'low', status:'done', created: d(12), notes:'Umleitung auf Alternativtarif erfolgreich.'},
+    {id:'t6', cat:'kuendigung', title:'Kündigungsbestätigung fehlt', customer:'A. Vogel · Münster', prio:'mid', status:'new', created: d(2), notes:''},
+    {id:'t7', cat:'abschlag', title:'Abschlag zu hoch berechnet', customer:'Pizzeria Roma · Duisburg', prio:'mid', status:'work', created: d(3), notes:'Kundendienst kontaktiert.'},
+    {id:'t8', cat:'rueckruf', title:'Rückruf vereinbart — Mi 14:00', customer:'F. Lehmann · Wuppertal', prio:'high', status:'new', created: d(0), notes:''},
+    {id:'t9', cat:'verzoegert', title:'Belieferungsstart verschoben', customer:'Bäckerei Sonne · Mülheim', prio:'mid', status:'work', created: d(5), notes:''},
+    {id:'t10', cat:'unterlagen', title:'Vollmacht fehlt für Anbieterwechsel', customer:'S. Weiß · Oberhausen', prio:'low', status:'wait', created: d(8), notes:'Kunde sendet bis Freitag.'},
+    {id:'t11', cat:'malo', title:'Falsche MaLo angegeben', customer:'T. Brandt · Solingen', prio:'high', status:'work', created: d(10), notes:'Korrektur eingereicht.'},
+    {id:'t12', cat:'rueckruf', title:'Rückfrage Tarifvergleich', customer:'I. Hoffmann · Remscheid', prio:'low', status:'done', created: d(1), notes:'Erledigt.'}
+  ];
+}
+
+function seedPartners(){
+  return [
+    {id:'p1', name:'Markus Lehmann', short:'ML', type:'immobilien', role:'Immobilienmakler', phone:'+49 171 1234567', email:'m.lehmann@immobilien-essen.de', refs:18, revenue:'€4.620', lastRef:'12 Tage', active:true, status:'aktiv', notes:'Beste Quelle für Neukunden bei Umzug.', favorite:true},
+    {id:'p2', name:'Tanja Bauer', short:'TB', type:'finanz', role:'Finanzberaterin', phone:'+49 173 8907654', email:'tanja@finanz-bauer.de', refs:11, revenue:'€2.815', lastRef:'4 Tage', active:true, status:'aktiv', notes:'Sehr proaktiv — empfiehlt aus eigener Initiative.', favorite:true},
+    {id:'p3', name:'Sven Meier', short:'SM', type:'waermepumpe', role:'Wärmepumpen-Installateur', phone:'+49 178 4567890', email:'sven@meier-waerme.de', refs:9, revenue:'€3.150', lastRef:'7 Tage', active:true, status:'aktiv', notes:'Cross-Selling Strom + WP läuft super.', favorite:true},
+    {id:'p4', name:'Carola Reinhardt', short:'CR', type:'versicherung', role:'Versicherungsmaklerin', phone:'+49 160 3456789', email:'c.reinhardt@allianz-essen.de', refs:7, revenue:'€1.620', lastRef:'18 Tage', active:true, status:'aktiv', notes:'Empfiehlt vor allem KMU-Kunden.', favorite:false},
+    {id:'p5', name:'Daniel Köhler', short:'DK', type:'solar', role:'Solar-Berater', phone:'+49 175 9876543', email:'daniel@koehler-solar.de', refs:6, revenue:'€2.340', lastRef:'2 Tage', active:true, status:'aktiv', notes:'Solar + Strom Kombination top.', favorite:false},
+    {id:'p6', name:'Tim Wagner', short:'TW', type:'internet', role:'Internet-Vertrieb', phone:'+49 179 2345678', email:'tim@wagner-net.de', refs:5, revenue:'€990', lastRef:'9 Tage', active:true, status:'aktiv', notes:'Hat eigenes Netzwerk — Potential größer.', favorite:false},
+    {id:'p7', name:'Andre Schäfer', short:'AS', type:'handwerk', role:'Elektromeister', phone:'+49 162 1098765', email:'andre@schaefer-elektro.de', refs:4, revenue:'€780', lastRef:'21 Tage', active:true, status:'aktiv', notes:'Empfiehlt vor allem bei Neubau.', favorite:false},
+    {id:'p8', name:'Sophia Klein', short:'SK', type:'creator', role:'Content Creator · Energie', phone:'+49 152 5678901', email:'sophia@kleinenergy.de', refs:3, revenue:'€720', lastRef:'30 Tage', active:false, status:'still', notes:'Letzter Post lief gut — reaktivieren!', favorite:false},
+    {id:'p9', name:'Robert Vogt', short:'RV', type:'unternehmer', role:'Unternehmer Netzwerk', phone:'+49 151 6789012', email:'robert@vogt-consulting.de', refs:0, revenue:'€0', lastRef:'42 Tage', active:false, status:'still', notes:'Reaktivierung nötig.', favorite:false}
+  ];
+}
+
+function seedPriorities(){
+  return [
+    {id:'pr1', text:'MaLo-ID Klärung für Schneider GmbH abschließen', tag:'high', meta:'Nacharbeit · 4 Tage offen', done:false},
+    {id:'pr2', text:'Markus Lehmann anrufen — letzter Kontakt vor 12 Tagen', tag:'mid', meta:'Partner · Reaktivierung', done:false},
+    {id:'pr3', text:'Top 3 Empfehlungen Mai mit Goodie überraschen', tag:'low', meta:'KwK · Wachstum', done:false},
+    {id:'pr4', text:'Rückruf F. Lehmann · 14:00', tag:'high', meta:'Heute', done:false},
+    {id:'pr5', text:'Mai-Quartalsbericht Vattenfall prüfen', tag:'low', meta:'Distributor', done:true}
+  ];
+}
+
+function seedReferrals(){
+  return [
+    {name:'Familie Schneider', refs:5},
+    {name:'M. Krause', refs:4},
+    {name:'P. Hartmann', refs:3},
+    {name:'T. Brandt', refs:3},
+    {name:'A. Vogel', refs:2}
+  ];
+}
+
+function seedTemplates(){
+  return [
+    {label:'Direktanfrage nach Wechsel', text:'Hi [Name], hat dein Stromwechsel mit REAL NRG gut geklappt? Ich freue mich, wenn du jemanden kennst, dem ich genauso helfen kann — du bekommst €25 Amazon-Gutschein pro erfolgreicher Empfehlung. Hier dein Link: realnrg.de/r/[deincode] 💡⚡'},
+    {label:'3-Freunde Kampagne', text:'Spezial-Aktion 🎁 Empfehle 3 Freunde — erhalte €75 Amazon-Gutschein. Läuft nur diesen Monat. Dein persönlicher Link: realnrg.de/r/[deincode]'},
+    {label:'Bewertung & Empfehlung', text:'Hi [Name], wenn du mit unserer Beratung zufrieden warst, freue ich mich riesig über eine kurze Google-Bewertung: [bewertungslink] · Und falls du jemanden kennst, dem ich auch helfen kann — €25 für dich pro Empfehlung: realnrg.de/r/[deincode] ⚡'},
+    {label:'Dankeschön nach Empfehlung', text:'Hi [Name], dein Freund hat erfolgreich gewechselt 🎉 Dein Amazon-Gutschein über €25 ist unterwegs. Danke für dein Vertrauen — du machst REAL NRG groß!'},
+    {label:'Reaktivierung still', text:'Hi [Name], lange nichts voneinander gehört! Falls du in deinem Umfeld jemanden hast, der wechseln möchte — die Aktion läuft noch: €25 Amazon pro Empfehlung. Link: realnrg.de/r/[deincode]'},
+    {label:'Gewerbe-Hinweis', text:'Hi [Name], übrigens: wir betreuen auch Gewerbe (Cafés, Praxen, kleine Firmen) — bei Gewerbekunden gibt es €50 Amazon-Bonus pro Empfehlung. Dein Link: realnrg.de/r/[deincode]'}
+  ];
+}
+
+function seedKnowledge(){
+  return [
+    {id:'k1', cat:'anbieter', title:'Extra Energy — Onboarding Best Practices', summary:'Provision, Auszahlung, häufige Fehlerquellen beim Vertragsabschluss mit Extra Energy.', date:'12. Mai 2026', readtime:'4 min'},
+    {id:'k2', cat:'anbieter', title:'eprimo Tarifstruktur 2026', summary:'Welche Tarifgruppen, Boni und Sonderaktionen aktuell verfügbar sind.', date:'08. Mai 2026', readtime:'6 min'},
+    {id:'k3', cat:'netzbetreiber', title:'RheinNetz Kontaktwege — was funktioniert wirklich', summary:'Direkter Draht zu Netzbetreiber RheinNetz für MaLo-ID Klärungen und Sperrungen.', date:'02. Mai 2026', readtime:'3 min'},
+    {id:'k4', cat:'netzbetreiber', title:'Bundesweite Netzbetreiber Übersicht', summary:'Liste der 880+ deutschen Netzbetreiber mit Kontakten und Spezialitäten.', date:'01. Apr 2026', readtime:'12 min'},
+    {id:'k5', cat:'probleme', title:'Doppelbelieferung — Schritt für Schritt lösen', summary:'5-Schritte SOP wenn ein Kunde von zwei Anbietern gleichzeitig beliefert wird.', date:'18. Apr 2026', readtime:'5 min'},
+    {id:'k6', cat:'probleme', title:'Netzsperre durch Inkasso — was tun', summary:'Vorgehen wenn der Vorlieferant gesperrt hat und neuer Vertrag scheitert.', date:'10. Mar 2026', readtime:'4 min'},
+    {id:'k7', cat:'sop', title:'SOP · Neukundengespräch in 9 Schritten', summary:'Vom Erstkontakt bis zur Vertragsunterschrift — strukturierter Ablauf.', date:'05. Mai 2026', readtime:'8 min'},
+    {id:'k8', cat:'sop', title:'SOP · Nacharbeit-Sprint (täglich)', summary:'Routine für die tägliche Nacharbeit: Priorisierung, Bearbeitung, Dokumentation.', date:'15. Apr 2026', readtime:'4 min'},
+    {id:'k9', cat:'gewerbe', title:'Gewerbe-Tarife — wo sind die Goldgruben', summary:'Welche Distributoren wirklich gute Gewerbekonditionen haben.', date:'20. Apr 2026', readtime:'7 min'},
+    {id:'k10', cat:'gewerbe', title:'Branchenargumente für Cafés & Bäckereien', summary:'Maßgeschneiderte Beratungs-Argumente für Gastro-Gewerbe.', date:'10. Mai 2026', readtime:'5 min'},
+    {id:'k11', cat:'immobilien', title:'Vermieter-Sonderfälle: Heizstrom & Allgemeinstrom', summary:'Wie Vermieter den Allgemeinstrom optimal beraten werden.', date:'25. Apr 2026', readtime:'6 min'},
+    {id:'k12', cat:'tipps', title:'Einwand "Ich vergleiche selbst online"', summary:'Schlagfertige Antworten auf den häufigsten Einwand im Kundengespräch.', date:'14. Mai 2026', readtime:'3 min'},
+    {id:'k13', cat:'tipps', title:'Closing-Techniken für hartnäckige Fälle', summary:'Drei bewährte Methoden um zögernde Kunden zur Unterschrift zu führen.', date:'06. Mai 2026', readtime:'5 min'},
+    {id:'k14', cat:'begriffe', title:'Energie-Glossar A-Z', summary:'MaLo-ID, MeLo-ID, Grundversorgung, Sondervertrag — alle Begriffe erklärt.', date:'01. Mar 2026', readtime:'15 min'}
+  ];
+}
+
+function seedDocuments(){
+  return [
+    {id:'doc1', name:'REAL NRG Pitchdeck 2026', type:'PPTX', cat:'praes', favorite:true, size:'12.4 MB', date:'18. Mai 2026', color:'#2DD4BF'},
+    {id:'doc2', name:'Preisübersicht Distributoren · Q2', type:'XLSX', cat:'preis', favorite:true, size:'342 KB', date:'14. Mai 2026', color:'#34D399'},
+    {id:'doc3', name:'Gewerbe-Angebot Restaurant', type:'PDF', cat:'gewerbe', favorite:false, size:'1.8 MB', date:'12. Mai 2026', color:'#FBBF24'},
+    {id:'doc4', name:'REAL NRG Logo Bundle', type:'ZIP', cat:'branding', favorite:true, size:'8.7 MB', date:'02. Jan 2026', color:'#60A5FA'},
+    {id:'doc5', name:'Flyer Empfehlungsaktion', type:'PDF', cat:'marketing', favorite:false, size:'2.1 MB', date:'08. Mai 2026', color:'#A78BFA'},
+    {id:'doc6', name:'Standard-Vollmacht', type:'PDF', cat:'vorlage', favorite:true, size:'180 KB', date:'01. Feb 2026', color:'#F87171'},
+    {id:'doc7', name:'Vertragsmuster Privatkunde', type:'DOCX', cat:'vertrag', favorite:false, size:'95 KB', date:'15. Apr 2026', color:'#FB923C'},
+    {id:'doc8', name:'Onboarding-Skript Neukunden', type:'PDF', cat:'schulung', favorite:false, size:'620 KB', date:'10. Mar 2026', color:'#2DD4BF'},
+    {id:'doc9', name:'Branding Style Guide', type:'PDF', cat:'branding', favorite:false, size:'4.2 MB', date:'01. Jan 2026', color:'#60A5FA'},
+    {id:'doc10', name:'Gewerbe-Pitch Café', type:'PPTX', cat:'gewerbe', favorite:true, size:'6.8 MB', date:'05. Mai 2026', color:'#FBBF24'},
+    {id:'doc11', name:'WhatsApp Templates Sammlung', type:'DOCX', cat:'vorlage', favorite:true, size:'45 KB', date:'12. Mai 2026', color:'#F87171'},
+    {id:'doc12', name:'Schulung · Einwandbehandlung', type:'PDF', cat:'schulung', favorite:false, size:'1.4 MB', date:'20. Apr 2026', color:'#2DD4BF'}
+  ];
+}
+
+/* ============================================================
+   LOAD STATE
+   ============================================================ */
+async function loadState(){
+  state.distributors = (await STORAGE.get('rn_distributors')) || seedDistributors();
+  state.tickets = (await STORAGE.get('rn_tickets')) || seedTickets();
+  state.partners = (await STORAGE.get('rn_partners')) || seedPartners();
+  state.priorities = (await STORAGE.get('rn_priorities')) || seedPriorities();
+  state.referrals = (await STORAGE.get('rn_referrals')) || seedReferrals();
+  state.templates = (await STORAGE.get('rn_templates')) || seedTemplates();
+  state.knowledge = (await STORAGE.get('rn_knowledge')) || seedKnowledge();
+  state.documents = (await STORAGE.get('rn_documents')) || seedDocuments();
+}
+async function persist(){
+  await STORAGE.set('rn_distributors', state.distributors);
+  await STORAGE.set('rn_tickets', state.tickets);
+  await STORAGE.set('rn_partners', state.partners);
+  await STORAGE.set('rn_priorities', state.priorities);
+  await STORAGE.set('rn_referrals', state.referrals);
+  await STORAGE.set('rn_templates', state.templates);
+  await STORAGE.set('rn_knowledge', state.knowledge);
+  await STORAGE.set('rn_documents', state.documents);
+}
+
+/* ============================================================
+   RENDER · DASHBOARD
+   ============================================================ */
+function setGreeting(){
+  const h = new Date().getHours();
+  const g = document.getElementById('greet-time');
+  if(h<11) g.textContent='Morgen';
+  else if(h<17) g.textContent='Tag';
+  else g.textContent='Abend';
+
+  const days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const d = new Date();
+  document.getElementById('greet-sub').textContent = `${days[d.getDay()]}, ${d.getDate()}. ${months[d.getMonth()]} ${d.getFullYear()} · Hier ist dein Fokus für heute.`;
+}
+
+function renderPriorities(){
+  const list = document.getElementById('priorities-list');
+  list.innerHTML = state.priorities.map(p => `
+    <div class="priority-item ${p.done?'done':''}" data-id="${p.id}">
+      <div class="priority-check ${p.done?'done':''}" onclick="togglePriority('${p.id}')">
+        ${p.done?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>':''}
+      </div>
+      <div style="flex:1">
+        <div class="priority-text">${p.text}</div>
+        <div class="priority-meta">
+          <span class="priority-tag tag-${p.tag}">${p.tag==='high'?'Hoch':p.tag==='mid'?'Mittel':'Niedrig'}</span>
+          <span>${p.meta}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function togglePriority(id){
+  const p = state.priorities.find(x=>x.id===id);
+  if(p){ p.done = !p.done; await persist(); renderPriorities()}
+}
+
+function renderActivity(){
+  const items = [
+    {ic:'⚡', text:'<b>Vertrag Schneider GmbH</b> erfolgreich an Extra Energy übergeben.', time:'vor 12 min'},
+    {ic:'🎁', text:'<b>Familie Schneider</b> hat erneut empfohlen — 5. Empfehlung diesen Monat.', time:'vor 1 h'},
+    {ic:'⚠', text:'Ticket <b>Netzsperre Becker</b> seit 9 Tagen offen.', time:'vor 3 h'},
+    {ic:'✓', text:'Provision <b>€420 von eprimo</b> eingegangen.', time:'gestern'},
+    {ic:'🤝', text:'<b>Sven Meier</b> hat 2 neue Wärmepumpen-Leads geschickt.', time:'gestern'}
+  ];
+  document.getElementById('activity-feed').innerHTML = items.map(a => `
+    <div class="activity-item">
+      <div class="activity-dot">${a.ic}</div>
+      <div>
+        <div class="activity-content">${a.text}</div>
+        <div class="activity-time">${a.time}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============================================================
+   RENDER · DISTRIBUTORS
+   ============================================================ */
+function renderDistributors(){
+  const grid = document.getElementById('distributor-grid');
+  const filter = state.activeFilter.dist;
+  const filtered = filter==='all' ? state.distributors : state.distributors.filter(d => d.tags.includes(filter));
+
+  document.getElementById('dist-count-all').textContent = state.distributors.length;
+  document.getElementById('nav-dist-count').textContent = state.distributors.length;
+
+  if(filtered.length===0){
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="ic">⚡</div><h4>Keine Distributoren in dieser Ansicht</h4><p>Wechsle den Filter oder lege einen neuen Distributor an.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(d => `
+    <div class="entity-card ${d.favorite?'favorite':''}" onclick="openDistributorDetail('${d.id}')">
+      <div class="entity-head">
+        <div class="entity-logo">${d.short}</div>
+        <div class="entity-info">
+          <div class="entity-name">
+            ${d.name}
+            ${d.favorite?'<svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>':''}
+          </div>
+          <div class="entity-sub">${d.contact} · ${d.payout}</div>
+          <div class="entity-rating">
+            ${[1,2,3,4,5].map(n => `<svg class="${n<=d.rating?'filled':''}" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="entity-stats">
+        <div class="entity-stat"><div class="k">Provision</div><div class="v">${d.provision}</div></div>
+        <div class="entity-stat"><div class="k">Gewerbe</div><div class="v">${d.gewerbe?'✓ Ja':'— Nein'}</div></div>
+        <div class="entity-stat"><div class="k">Bonität</div><div class="v">${d.bonitaet?'✓ Ja':'— Nein'}</div></div>
+        <div class="entity-stat"><div class="k">Auszahlung</div><div class="v">${d.payout}</div></div>
+      </div>
+      <div class="entity-tags">
+        ${d.pros.slice(0,2).map(t => `<span class="tag good">+ ${t}</span>`).join('')}
+        ${d.cons.slice(0,1).map(t => `<span class="tag bad">− ${t}</span>`).join('')}
+      </div>
+      <div class="entity-actions">
+        <div class="mini-btn" onclick="event.stopPropagation(); copyText('${d.phone}', 'Tel kopiert')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Anrufen</div>
+        <div class="mini-btn" onclick="event.stopPropagation(); copyText('${d.email}', 'Email kopiert')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email</div>
+        <div class="mini-btn" onclick="event.stopPropagation(); toggleFav('${d.id}')">${d.favorite?'★':'☆'}</div>
+        <div class="mini-btn danger" onclick="deleteDistributor('${d.id}', event)" title="Distributor löschen"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function toggleFav(id){
+  const d = state.distributors.find(x=>x.id===id);
+  if(d){ d.favorite = !d.favorite; if(d.favorite && !d.tags.includes('fav')) d.tags.push('fav'); else d.tags = d.tags.filter(t=>t!=='fav'); await persist(); renderDistributors()}
+}
+
+function openDistributorDetail(id){
+  const d = state.distributors.find(x=>x.id===id);
+  if(!d) return;
+  const modal = document.getElementById('modal-content');
+  modal.innerHTML = `
+    <div class="modal-head">
+      <div style="display:flex; align-items:center; gap:14px">
+        <div class="entity-logo" style="width:54px; height:54px; font-size:22px">${d.short}</div>
+        <div>
+          <div class="modal-title">${d.name}</div>
+          <div style="font-size:12px; color:var(--ink-300); margin-top:4px">${d.contact} · ${d.payout}</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="entity-stats" style="margin-bottom:20px">
+      <div class="entity-stat"><div class="k">Provision</div><div class="v">${d.provision}</div></div>
+      <div class="entity-stat"><div class="k">Auszahlung</div><div class="v">${d.payout}</div></div>
+      <div class="entity-stat"><div class="k">Gewerbe</div><div class="v">${d.gewerbe?'✓ Ja':'— Nein'}</div></div>
+      <div class="entity-stat"><div class="k">Bonität</div><div class="v">${d.bonitaet?'✓ Ja':'— Nein'}</div></div>
+      <div class="entity-stat"><div class="k">Telefon</div><div class="v">${d.phone}</div></div>
+      <div class="entity-stat"><div class="k">Email</div><div class="v">${d.email}</div></div>
+    </div>
+    <div style="margin-bottom:18px">
+      <div class="form-label" style="margin-bottom:8px">Vorteile</div>
+      <div class="entity-tags">${d.pros.map(p=>`<span class="tag good">+ ${p}</span>`).join('') || '<span class="tag">Keine erfasst</span>'}</div>
+    </div>
+    <div style="margin-bottom:18px">
+      <div class="form-label" style="margin-bottom:8px">Nachteile</div>
+      <div class="entity-tags">${d.cons.map(c=>`<span class="tag bad">− ${c}</span>`).join('') || '<span class="tag">Keine erfasst</span>'}</div>
+    </div>
+    <div style="margin-bottom:18px">
+      <div class="form-label" style="margin-bottom:8px">Notizen</div>
+      <div style="font-size:13.5px; color:var(--ink-100); line-height:1.55; background:rgba(0,0,0,0.2); padding:14px; border-radius:10px; border:1px solid var(--line)">${d.notes||'<span style="color:var(--ink-400)">Keine Notizen</span>'}</div>
+    </div>
+    <div style="margin-bottom:18px">
+      <div class="form-label" style="margin-bottom:8px">Typische Probleme</div>
+      <div style="font-size:13.5px; color:var(--ink-100); line-height:1.55; background:rgba(0,0,0,0.2); padding:14px; border-radius:10px; border:1px solid var(--line)">${d.problems||'<span style="color:var(--ink-400)">Keine Probleme erfasst</span>'}</div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-danger" onclick="deleteDistributor('${d.id}')">Löschen</button>
+      <button class="btn btn-ghost" onclick="closeModal()">Schließen</button>
+      <button class="btn btn-primary" onclick="window.open('https://${d.portal}', '_blank')">Login Portal öffnen →</button>
+    </div>
+  `;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+
+/* ============================================================
+   RENDER · NACHARBEIT (Kanban)
+   ============================================================ */
+const NACH_CATS = {
+  malo:'MaLo-ID', netz:'Netzsperre', doppel:'Doppelbelieferung', 'kein-kontakt':'Kein Kontakt',
+  ablehnung:'Ablehnung', kuendigung:'Kündigung', abschlag:'Abschlag', rueckruf:'Rückruf',
+  verzoegert:'Verzögert', unterlagen:'Unterlagen'
+};
+const STATUS_LABEL = { new:'Neu', work:'In Bearbeitung', wait:'Wartet auf Rückmeldung', done:'Erledigt'};
+
+function renderKanban(){
+  const board = document.getElementById('kanban-board');
+  const filter = state.activeFilter.nach;
+  const tickets = filter==='all' ? state.tickets : state.tickets.filter(t => t.cat===filter);
+
+  const grouped = { new:[], work:[], wait:[], done:[] };
+  tickets.forEach(t => { if(grouped[t.status]) grouped[t.status].push(t)});
+
+  const active = state.tickets.filter(t=>t.status!=='done').length;
+  document.getElementById('nach-count-all').textContent = active;
+  document.getElementById('nav-nach-count').textContent = active;
+
+  const cols = [
+    {key:'new', label:'Neu', cls:'col-new'},
+    {key:'work', label:'In Bearbeitung', cls:'col-work'},
+    {key:'wait', label:'Wartet auf Rückm.', cls:'col-wait'},
+    {key:'done', label:'Erledigt', cls:'col-done'}
+  ];
+
+  board.innerHTML = cols.map(c => `
+    <div class="kanban-col">
+      <div class="kanban-col-head">
+        <div class="kanban-col-title"><span class="col-dot ${c.cls.replace('col-','col-')}"></span><span class="${c.cls}"><span class="col-dot ${c.cls}"></span></span> ${c.label}</div>
+        <div class="kanban-count">${grouped[c.key].length}</div>
+      </div>
+      ${grouped[c.key].length===0
+        ? '<div style="color:var(--ink-400); font-size:12px; text-align:center; padding:20px 0">Keine Tickets</div>'
+        : grouped[c.key].map(t => renderTicket(t)).join('')}
+    </div>
+  `).join('');
+
+  // Fix duplicated dots in template above
+  board.querySelectorAll('.kanban-col-title').forEach((el,i) => {
+    const c = cols[i];
+    el.innerHTML = `<span class="col-dot"></span> ${c.label}`;
+    const dot = el.querySelector('.col-dot');
+    if(c.key==='new') dot.style.background='var(--info)'; if(c.key==='new') dot.style.boxShadow='0 0 6px var(--info)';
+    if(c.key==='work'){ dot.style.background='var(--warning)'; dot.style.boxShadow='0 0 6px var(--warning)'}
+    if(c.key==='wait'){ dot.style.background='var(--ink-300)'}
+    if(c.key==='done'){ dot.style.background='var(--success)'; dot.style.boxShadow='0 0 6px var(--success)'}
+  });
+}
+
+function renderTicket(t){
+  const created = new Date(t.created);
+  const ageDays = Math.floor((Date.now()-created)/86400000);
+  const old = ageDays >= 7 && t.status !== 'done';
+  return `
+    <div class="ticket ${old?'old':''}" onclick="openTicketDetail('${t.id}')">
+      <div class="ticket-head">
+        <span class="ticket-cat">${NACH_CATS[t.cat]||t.cat}</span>
+        <span class="ticket-prio ${t.prio}" title="${t.prio==='high'?'Hoch':t.prio==='mid'?'Mittel':'Niedrig'}"></span>
+      </div>
+      <div class="ticket-title">${t.title}</div>
+      <div class="ticket-customer">${t.customer}</div>
+      <div class="ticket-foot">
+        <span class="age">${ageDays===0?'heute':ageDays===1?'1 Tag':`${ageDays} Tage`}</span>
+        ${old?'<span style="color:var(--danger)">⚠ alt</span>':''}
+      </div>
+    </div>
+  `;
+}
+
+function openTicketDetail(id){
+  const t = state.tickets.find(x=>x.id===id);
+  if(!t) return;
+  const created = new Date(t.created);
+  const ageDays = Math.floor((Date.now()-created)/86400000);
+  const modal = document.getElementById('modal-content');
+  modal.innerHTML = `
+    <div class="modal-head">
+      <div>
+        <div style="font-size:11px; color:var(--teal-300); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px">${NACH_CATS[t.cat]} · ${ageDays} Tage offen</div>
+        <div class="modal-title">${t.title}</div>
+        <div style="font-size:13px; color:var(--ink-300); margin-top:4px">${t.customer}</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="form-grid">
+      <div class="form-row">
+        <div class="form-label">Status</div>
+        <select class="form-select" id="t-status" onchange="updateTicket('${t.id}', 'status', this.value)">
+          ${Object.entries(STATUS_LABEL).map(([k,v]) => `<option value="${k}" ${t.status===k?'selected':''}>${v}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Priorität</div>
+        <select class="form-select" id="t-prio" onchange="updateTicket('${t.id}', 'prio', this.value)">
+          <option value="high" ${t.prio==='high'?'selected':''}>Hoch</option>
+          <option value="mid" ${t.prio==='mid'?'selected':''}>Mittel</option>
+          <option value="low" ${t.prio==='low'?'selected':''}>Niedrig</option>
+        </select>
+      </div>
+      <div class="form-row full">
+        <div class="form-label">Notizen / Aktivität</div>
+        <textarea class="form-textarea" id="t-notes" placeholder="Bisheriger Stand, was wurde versucht…">${t.notes||''}</textarea>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-danger" onclick="deleteTicket('${t.id}')">Löschen</button>
+      <button class="btn btn-ghost" onclick="closeModal()">Schließen</button>
+      <button class="btn btn-primary" onclick="saveTicket('${t.id}')">Speichern</button>
+    </div>
+  `;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+
+async function updateTicket(id, field, value){
+  const t = state.tickets.find(x=>x.id===id);
+  if(t){ t[field]=value; await persist()}
+}
+async function saveTicket(id){
+  const t = state.tickets.find(x=>x.id===id);
+  if(t){
+    t.notes = document.getElementById('t-notes').value;
+    t.status = document.getElementById('t-status').value;
+    t.prio = document.getElementById('t-prio').value;
+    await persist();
+    closeModal();
+    renderKanban();
+    toast('Ticket gespeichert ✓', 'success');
+  }
+}
+async function deleteTicket(id){
+  if(!confirm('Ticket wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.')) return;
+  state.tickets = state.tickets.filter(t=>t.id!==id);
+  await persist();
+  closeModal();
+  renderKanban();
+  toast('Ticket gelöscht');
+}
+
+/* ============================================================
+   DELETE HANDLERS (für alle Module)
+   ============================================================ */
+async function deleteDistributor(id, ev){
+  if(ev) ev.stopPropagation();
+  const d = state.distributors.find(x=>x.id===id);
+  if(!d) return;
+  if(!confirm(`Distributor "${d.name}" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.`)) return;
+  state.distributors = state.distributors.filter(x=>x.id!==id);
+  await persist();
+  closeModal();
+  renderDistributors();
+  toast('Distributor gelöscht');
+}
+
+async function deletePartner(id, ev){
+  if(ev) ev.stopPropagation();
+  const p = state.partners.find(x=>x.id===id);
+  if(!p) return;
+  if(!confirm(`Partner "${p.name}" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.`)) return;
+  state.partners = state.partners.filter(x=>x.id!==id);
+  await persist();
+  closeModal();
+  renderPartners();
+  toast('Partner gelöscht');
+}
+
+async function deleteReferral(idx, ev){
+  if(ev) ev.stopPropagation();
+  const r = state.referrals[idx];
+  if(!r) return;
+  if(!confirm(`Empfehlung von "${r.name}" wirklich löschen?`)) return;
+  state.referrals.splice(idx, 1);
+  await persist();
+  renderLeaderboard();
+  toast('Empfehlung gelöscht');
+}
+
+async function deleteTemplate(idx, ev){
+  if(ev) ev.stopPropagation();
+  const t = state.templates[idx];
+  if(!t) return;
+  if(!confirm(`Template "${t.label}" wirklich löschen?`)) return;
+  state.templates.splice(idx, 1);
+  await persist();
+  renderTemplates();
+  toast('Template gelöscht');
+}
+
+async function deleteKnowledge(id, ev){
+  if(ev) ev.stopPropagation();
+  const k = state.knowledge.find(x=>x.id===id);
+  if(!k) return;
+  if(!confirm(`Artikel "${k.title}" wirklich löschen?`)) return;
+  state.knowledge = state.knowledge.filter(x=>x.id!==id);
+  await persist();
+  renderKB();
+  toast('Artikel gelöscht');
+}
+
+async function deleteDocument(id, ev){
+  if(ev) ev.stopPropagation();
+  const d = state.documents.find(x=>x.id===id);
+  if(!d) return;
+  if(!confirm(`Dokument "${d.name}" wirklich löschen?`)) return;
+  state.documents = state.documents.filter(x=>x.id!==id);
+  await persist();
+  renderDocs();
+  toast('Dokument gelöscht');
+}
+
+let nachKanbanView = true;
+function toggleNachView(){
+  nachKanbanView = !nachKanbanView;
+  document.getElementById('nach-view-label').textContent = nachKanbanView ? 'Board-Ansicht' : 'Listen-Ansicht';
+  // For now we keep Kanban as primary view
+  renderKanban();
+}
+
+/* ============================================================
+   RENDER · PARTNERS
+   ============================================================ */
+function renderPartners(){
+  const grid = document.getElementById('partner-grid');
+  const filter = state.activeFilter.partner;
+  const filtered = filter==='all' ? state.partners : state.partners.filter(p => p.type===filter);
+
+  const active = state.partners.filter(p=>p.active).length;
+  const sleep = state.partners.filter(p=>!p.active).length;
+  const totalRefs = state.partners.reduce((a,b)=>a+b.refs,0);
+
+  document.getElementById('p-active').textContent = active;
+  document.getElementById('p-refs').textContent = totalRefs;
+  document.getElementById('p-sleep').textContent = sleep;
+
+  if(filtered.length===0){
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="ic">🤝</div><h4>Keine Partner in dieser Ansicht</h4><p>Wechsle den Filter oder lege einen neuen Partner an.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="entity-card ${p.favorite?'favorite':''}" onclick="openPartnerDetail('${p.id}')">
+      <div class="entity-head">
+        <div class="entity-logo" style="background:linear-gradient(135deg, ${p.active?'#1e3a8a':'#374151'}, ${p.active?'var(--teal-500)':'#4B5563'})">${p.short}</div>
+        <div class="entity-info">
+          <div class="entity-name">
+            ${p.name}
+            ${p.favorite?'<svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>':''}
+          </div>
+          <div class="entity-sub">${p.role}</div>
+          <div style="margin-top:6px">
+            ${p.active
+              ? '<span class="tag good">● Aktiv</span>'
+              : '<span class="tag bad">○ Reaktivieren</span>'}
+          </div>
+        </div>
+      </div>
+      <div class="entity-stats">
+        <div class="entity-stat"><div class="k">Empfehlungen</div><div class="v">${p.refs}</div></div>
+        <div class="entity-stat"><div class="k">Umsatz</div><div class="v">${p.revenue}</div></div>
+        <div class="entity-stat"><div class="k">Letzter Kontakt</div><div class="v">${p.lastRef}</div></div>
+        <div class="entity-stat"><div class="k">Status</div><div class="v">${p.status}</div></div>
+      </div>
+      <div class="entity-actions">
+        <div class="mini-btn" onclick="event.stopPropagation(); copyText('${p.phone}', 'Tel kopiert')">📞 Anrufen</div>
+        <div class="mini-btn" onclick="event.stopPropagation(); copyText('${p.email}', 'Email kopiert')">✉ Email</div>
+        <div class="mini-btn danger" onclick="deletePartner('${p.id}', event)" title="Partner löschen"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openPartnerDetail(id){
+  const p = state.partners.find(x=>x.id===id);
+  if(!p) return;
+  const modal = document.getElementById('modal-content');
+  modal.innerHTML = `
+    <div class="modal-head">
+      <div style="display:flex; align-items:center; gap:14px">
+        <div class="entity-logo" style="width:54px; height:54px; font-size:22px; background:linear-gradient(135deg, #1e3a8a, var(--teal-500))">${p.short}</div>
+        <div>
+          <div class="modal-title">${p.name}</div>
+          <div style="font-size:12px; color:var(--ink-300); margin-top:4px">${p.role}</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="entity-stats" style="margin-bottom:20px">
+      <div class="entity-stat"><div class="k">Empfehlungen</div><div class="v">${p.refs}</div></div>
+      <div class="entity-stat"><div class="k">Umsatz</div><div class="v">${p.revenue}</div></div>
+      <div class="entity-stat"><div class="k">Letzter Kontakt</div><div class="v">${p.lastRef}</div></div>
+      <div class="entity-stat"><div class="k">Status</div><div class="v">${p.active?'Aktiv':'Reaktivieren'}</div></div>
+      <div class="entity-stat"><div class="k">Telefon</div><div class="v">${p.phone}</div></div>
+      <div class="entity-stat"><div class="k">Email</div><div class="v">${p.email}</div></div>
+    </div>
+    <div style="margin-bottom:18px">
+      <div class="form-label" style="margin-bottom:8px">Notizen & offene Möglichkeiten</div>
+      <textarea class="form-textarea" id="p-notes">${p.notes||''}</textarea>
+    </div>
+    ${!p.active ? `<div style="padding:14px; background:rgba(251,191,36,0.08); border:1px solid rgba(251,191,36,0.25); border-radius:10px; margin-bottom:18px">
+      <div style="font-size:13px; color:var(--warning); margin-bottom:4px"><b>💤 Reaktivierungs-Vorschlag</b></div>
+      <div style="font-size:12.5px; color:var(--ink-100); line-height:1.5">Letzter Kontakt vor ${p.lastRef}. WhatsApp-Template "Reaktivierung still" einsetzen — kurzer Call mit konkretem Angebot wirkt erfahrungsgemäß am besten.</div>
+    </div>` : ''}
+    <div class="modal-foot">
+      <button class="btn btn-danger" onclick="deletePartner('${p.id}')">Löschen</button>
+      <button class="btn btn-ghost" onclick="closeModal()">Schließen</button>
+      <button class="btn btn-primary" onclick="savePartner('${p.id}')">Speichern</button>
+    </div>
+  `;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+async function savePartner(id){
+  const p = state.partners.find(x=>x.id===id);
+  if(p){ p.notes = document.getElementById('p-notes').value; await persist(); closeModal(); toast('Partner gespeichert ✓', 'success')}
+}
+
+/* ============================================================
+   RENDER · REFERRALS
+   ============================================================ */
+function renderTemplates(){
+  const grid = document.getElementById('template-grid');
+  grid.innerHTML = state.templates.map((t,i) => `
+    <div class="template-card">
+      <div class="label">💬 ${t.label}</div>
+      <div class="preview">${t.text}</div>
+      <div class="actions">
+        <div class="copy-btn" data-idx="${i}" onclick="copyTemplate(${i}, this)">Kopieren</div>
+        <div class="copy-btn danger" onclick="deleteTemplate(${i}, event)" title="Template löschen">🗑</div>
+      </div>
+    </div>
+  `).join('');
+}
+function copyTemplate(idx, btn){
+  const t = state.templates[idx];
+  copyText(t.text, 'Template kopiert ✓');
+  btn.classList.add('done');
+  btn.textContent = '✓ Kopiert';
+  setTimeout(() => { btn.classList.remove('done'); btn.textContent='Kopieren' }, 2000);
+}
+
+function renderLeaderboard(){
+  const lb = document.getElementById('leaderboard');
+  const sorted = [...state.referrals].sort((a,b)=>b.refs-a.refs);
+  lb.innerHTML = sorted.map((r,i) => {
+    const rank = i+1;
+    const rankCls = rank===1?'gold':rank===2?'silver':rank===3?'bronze':'';
+    const initials = r.name.split(' ').map(s=>s[0]).slice(0,2).join('');
+    return `
+      <div class="leader-row">
+        <div class="leader-rank ${rankCls}">${rank}</div>
+        <div class="leader-avatar">${initials}</div>
+        <div class="leader-name">${r.name}</div>
+        <div class="leader-count">${r.refs} Refs</div>
+        <div style="color:var(--ink-300); font-size:11px; display:flex; align-items:center; gap:8px">${rank<=3?'🏆':''}<span class="leader-del" onclick="deleteReferral(${state.referrals.indexOf(r)}, event)" title="Löschen">🗑</span></div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderQR(){
+  // Generate a simple visual QR-like pattern (decorative)
+  const c = document.getElementById('qr-container');
+  const size = 110, cells = 21;
+  const cs = size/cells;
+  let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+  svg += `<rect width="${size}" height="${size}" fill="white"/>`;
+  // pseudorandom but stable pattern
+  let seed = 9876;
+  function rnd(){ seed = (seed*9301 + 49297) % 233280; return seed/233280 }
+  for(let y=0;y<cells;y++){
+    for(let x=0;x<cells;x++){
+      if(rnd() > 0.5){
+        svg += `<rect x="${x*cs}" y="${y*cs}" width="${cs}" height="${cs}" fill="#040814"/>`;
+      }
+    }
+  }
+  // Three position markers
+  const drawMarker = (mx,my) => {
+    svg += `<rect x="${mx*cs}" y="${my*cs}" width="${7*cs}" height="${7*cs}" fill="#040814"/>`;
+    svg += `<rect x="${(mx+1)*cs}" y="${(my+1)*cs}" width="${5*cs}" height="${5*cs}" fill="white"/>`;
+    svg += `<rect x="${(mx+2)*cs}" y="${(my+2)*cs}" width="${3*cs}" height="${3*cs}" fill="#040814"/>`;
+  };
+  drawMarker(0,0); drawMarker(cells-7,0); drawMarker(0,cells-7);
+  svg += `</svg>`;
+  c.innerHTML = svg;
+}
+function downloadQR(){
+  toast('QR-Download in Vollversion verfügbar', 'success');
+}
+
+/* ============================================================
+   RENDER · KNOWLEDGE BASE
+   ============================================================ */
+const KB_CATS = [
+  {key:'anbieter', label:'Anbieter & Distributoren', ic:'⚡'},
+  {key:'netzbetreiber', label:'Netzbetreiber', ic:'🔌'},
+  {key:'probleme', label:'Probleme & Lösungen', ic:'🛠'},
+  {key:'sop', label:'SOPs & Prozesse', ic:'📋'},
+  {key:'gewerbe', label:'Gewerbe-Wissen', ic:'🏢'},
+  {key:'immobilien', label:'Immobilien', ic:'🏠'},
+  {key:'tipps', label:'Tipps für schwierige Fälle', ic:'💡'},
+  {key:'begriffe', label:'Energie-Begriffe', ic:'📖'}
+];
+
+function renderKB(){
+  const side = document.getElementById('kb-categories');
+  side.innerHTML = KB_CATS.map(c => {
+    const count = state.knowledge.filter(k=>k.cat===c.key).length;
+    return `<div class="kb-cat ${state.activeKbCat===c.key?'active':''}" onclick="setKbCat('${c.key}')">
+      <span class="ic">${c.ic}</span><span>${c.label}</span><span class="count">${count}</span>
+    </div>`;
+  }).join('');
+
+  const main = document.getElementById('kb-article-area');
+  const articles = state.knowledge.filter(k=>k.cat===state.activeKbCat);
+  const catLabel = KB_CATS.find(c=>c.key===state.activeKbCat)?.label;
+
+  main.innerHTML = `
+    <div style="font-family:var(--font-display); font-size:30px; color:var(--white); letter-spacing:-0.02em; margin-bottom:6px">${catLabel}</div>
+    <div style="font-size:13px; color:var(--ink-300); margin-bottom:24px">${articles.length} Artikel · Eigenes Energy-Wiki</div>
+    ${articles.length===0
+      ? '<div class="empty"><div class="ic">📚</div><h4>Noch keine Artikel</h4><p>Lege deinen ersten Wissensartikel in dieser Kategorie an.</p></div>'
+      : `<div class="kb-article-list">${articles.map(a => `
+        <div class="kb-article">
+          <h4>${a.title}</h4>
+          <p>${a.summary}</p>
+          <div class="meta"><span>📅 ${a.date}</span><span>⏱ ${a.readtime}</span><span class="kb-del" onclick="deleteKnowledge('${a.id}', event)" title="Artikel löschen">🗑 Löschen</span></div>
+        </div>
+      `).join('')}</div>`
+    }
+  `;
+}
+function setKbCat(c){ state.activeKbCat = c; renderKB()}
+
+/* ============================================================
+   RENDER · DOCUMENTS
+   ============================================================ */
+function renderDocs(){
+  const grid = document.getElementById('doc-grid');
+  const filter = state.activeFilter.doc;
+  const filtered = filter==='all' ? state.documents : filter==='fav' ? state.documents.filter(d=>d.favorite) : state.documents.filter(d=>d.cat===filter);
+
+  if(filtered.length===0){
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="ic">📂</div><h4>Keine Dokumente</h4><p>Wechsle den Filter oder lade dein erstes Dokument hoch.</p></div>`;
+    return;
+  }
+
+  const typeIcons = {
+    PDF: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>',
+    DOCX: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    XLSX: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>',
+    PPTX: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+    ZIP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>'
+  };
+
+  grid.innerHTML = filtered.map(d => `
+    <div class="doc-card" onclick="openDocDetail('${d.id}')">
+      <div class="doc-preview" style="background: linear-gradient(135deg, ${d.color}22, var(--navy-800))">
+        <div class="doc-type">${d.type}</div>
+        <div class="doc-icon" style="color:${d.color}">${typeIcons[d.type]||typeIcons.PDF}</div>
+        <div class="doc-del" onclick="deleteDocument('${d.id}', event)" title="Dokument löschen"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-name">${d.favorite?'★ ':''}${d.name}</div>
+        <div class="doc-meta">${d.size} · ${d.date}</div>
+      </div>
+    </div>
+  `).join('');
+}
+function openDocDetail(id){
+  const d = state.documents.find(x=>x.id===id);
+  toast(`${d.name} — Vorschau in Vollversion`, 'success');
+}
+
+/* ============================================================
+   INSIGHTS CHARTS (simple SVG bars)
+   ============================================================ */
+function renderInsights(){
+  const distChart = document.getElementById('dist-revenue-chart');
+  const distData = [
+    {n:'Extra Energy', v:3240, c:'var(--teal-400)'},
+    {n:'eprimo', v:2180, c:'var(--teal-400)'},
+    {n:'Lichtblick', v:1650, c:'var(--info)'},
+    {n:'E.ON', v:1340, c:'var(--info)'},
+    {n:'Vattenfall', v:920, c:'var(--ink-300)'},
+    {n:'Süwag', v:620, c:'var(--ink-300)'},
+    {n:'Yello', v:540, c:'var(--ink-300)'},
+    {n:'1&1 Energy', v:310, c:'var(--danger)'}
+  ];
+  const maxD = Math.max(...distData.map(d=>d.v));
+  distChart.innerHTML = distData.map(d => `
+    <div style="margin-bottom:12px">
+      <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--ink-200); margin-bottom:4px">
+        <span>${d.n}</span><span style="font-family:var(--font-mono); color:var(--white)">€${d.v.toLocaleString('de')}</span>
+      </div>
+      <div style="height:7px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden">
+        <div style="height:100%; width:${(d.v/maxD)*100}%; background:${d.c}; border-radius:4px; box-shadow: 0 0 8px ${d.c}66"></div>
+      </div>
+    </div>
+  `).join('');
+
+  const probChart = document.getElementById('problem-chart');
+  const probData = [
+    {n:'MaLo-ID', v:8, c:'var(--danger)'},
+    {n:'Doppelbelieferung', v:6, c:'var(--warning)'},
+    {n:'Kein Kontakt', v:5, c:'var(--warning)'},
+    {n:'Netzsperre', v:4, c:'var(--info)'},
+    {n:'Unterlagen', v:3, c:'var(--info)'},
+    {n:'Abschlag', v:2, c:'var(--ink-300)'},
+    {n:'Sonstige', v:4, c:'var(--ink-300)'}
+  ];
+  const maxP = Math.max(...probData.map(d=>d.v));
+  probChart.innerHTML = probData.map(d => `
+    <div style="margin-bottom:12px">
+      <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--ink-200); margin-bottom:4px">
+        <span>${d.n}</span><span style="font-family:var(--font-mono); color:var(--white)">${d.v}</span>
+      </div>
+      <div style="height:7px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden">
+        <div style="height:100%; width:${(d.v/maxP)*100}%; background:${d.c}; border-radius:4px"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+function openModal(type){
+  const modal = document.getElementById('modal-content');
+
+  if(type==='quick-task'){
+    modal.innerHTML = `
+      <div class="modal-head">
+        <div class="modal-title">Neue Priorität</div>
+        <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="form-grid">
+        <div class="form-row full">
+          <div class="form-label">Was muss erledigt werden?</div>
+          <input class="form-input" id="np-text" placeholder="z.B. Kunde Schneider Rückruf" autofocus>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Priorität</div>
+          <select class="form-select" id="np-tag">
+            <option value="high">Hoch</option>
+            <option value="mid" selected>Mittel</option>
+            <option value="low">Niedrig</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Kontext</div>
+          <input class="form-input" id="np-meta" placeholder="z.B. Nacharbeit · 2 Tage offen">
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="addPriority()">Anlegen</button>
+      </div>
+    `;
+  } else if(type==='add-ticket'){
+    modal.innerHTML = `
+      <div class="modal-head">
+        <div class="modal-title">Neues Ticket</div>
+        <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="form-grid">
+        <div class="form-row full">
+          <div class="form-label">Titel</div>
+          <input class="form-input" id="nt-title" placeholder="Kurze Beschreibung" autofocus>
+        </div>
+        <div class="form-row full">
+          <div class="form-label">Kunde</div>
+          <input class="form-input" id="nt-customer" placeholder="Kundenname · Ort">
+        </div>
+        <div class="form-row">
+          <div class="form-label">Kategorie</div>
+          <select class="form-select" id="nt-cat">
+            ${Object.entries(NACH_CATS).map(([k,v]) => `<option value="${k}">${v}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Priorität</div>
+          <select class="form-select" id="nt-prio">
+            <option value="high">Hoch</option><option value="mid" selected>Mittel</option><option value="low">Niedrig</option>
+          </select>
+        </div>
+        <div class="form-row full">
+          <div class="form-label">Notizen</div>
+          <textarea class="form-textarea" id="nt-notes"></textarea>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="addTicket()">Anlegen</button>
+      </div>
+    `;
+  } else if(type==='add-distributor'){
+    modal.innerHTML = `
+      <div class="modal-head">
+        <div class="modal-title">Distributor hinzufügen</div>
+        <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><div class="form-label">Name</div><input class="form-input" id="nd-name" placeholder="z.B. Extra Energy"></div>
+        <div class="form-row"><div class="form-label">Kürzel (2 Buchstaben)</div><input class="form-input" id="nd-short" maxlength="2" placeholder="EX"></div>
+        <div class="form-row"><div class="form-label">Provision</div><input class="form-input" id="nd-prov" placeholder="€180/Vertrag"></div>
+        <div class="form-row"><div class="form-label">Auszahlungsturnus</div><input class="form-input" id="nd-pay" placeholder="Monatlich"></div>
+        <div class="form-row"><div class="form-label">Ansprechpartner</div><input class="form-input" id="nd-contact"></div>
+        <div class="form-row"><div class="form-label">Telefon</div><input class="form-input" id="nd-phone"></div>
+        <div class="form-row"><div class="form-label">Email</div><input class="form-input" id="nd-email"></div>
+        <div class="form-row"><div class="form-label">Login Portal</div><input class="form-input" id="nd-portal" placeholder="partner.anbieter.de"></div>
+        <div class="form-row"><div class="form-label">Gewerbe möglich</div><select class="form-select" id="nd-gewerbe"><option value="true">Ja</option><option value="false">Nein</option></select></div>
+        <div class="form-row"><div class="form-label">Bonitätsprüfung</div><select class="form-select" id="nd-bonitaet"><option value="true">Ja</option><option value="false">Nein</option></select></div>
+        <div class="form-row full"><div class="form-label">Notizen</div><textarea class="form-textarea" id="nd-notes"></textarea></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="addDistributor()">Anlegen</button>
+      </div>
+    `;
+  } else if(type==='add-partner'){
+    modal.innerHTML = `
+      <div class="modal-head">
+        <div class="modal-title">Partner hinzufügen</div>
+        <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="form-grid">
+        <div class="form-row"><div class="form-label">Name</div><input class="form-input" id="np-name"></div>
+        <div class="form-row"><div class="form-label">Typ</div><select class="form-select" id="np-type">
+          <option value="immobilien">Immobilienmakler</option><option value="versicherung">Versicherung</option>
+          <option value="finanz">Finanzberater</option><option value="waermepumpe">Wärmepumpe</option>
+          <option value="solar">Solar</option><option value="internet">Internet</option>
+          <option value="handwerk">Handwerk</option><option value="creator">Creator</option>
+          <option value="unternehmer">Unternehmer</option>
+        </select></div>
+        <div class="form-row"><div class="form-label">Rolle</div><input class="form-input" id="np-role"></div>
+        <div class="form-row"><div class="form-label">Telefon</div><input class="form-input" id="np-phone"></div>
+        <div class="form-row full"><div class="form-label">Email</div><input class="form-input" id="np-email"></div>
+        <div class="form-row full"><div class="form-label">Notizen</div><textarea class="form-textarea" id="np-notes"></textarea></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="addPartner()">Anlegen</button>
+      </div>
+    `;
+  } else if(type==='add-referral'){
+    modal.innerHTML = `
+      <div class="modal-head">
+        <div class="modal-title">Empfehlung erfassen</div>
+        <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="form-grid">
+        <div class="form-row full"><div class="form-label">Empfehlungsgeber</div><input class="form-input" id="nr-name" placeholder="Wer hat empfohlen?"></div>
+        <div class="form-row full"><div class="form-label">Anzahl der Empfehlungen (Mai)</div><input class="form-input" id="nr-count" type="number" value="1" min="1"></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="addReferral()">Anlegen</button>
+      </div>
+    `;
+  } else if(type==='add-knowledge'){
+    modal.innerHTML = `
+      <div class="modal-head">
+        <div class="modal-title">Wissensartikel anlegen</div>
+        <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="form-grid">
+        <div class="form-row full"><div class="form-label">Titel</div><input class="form-input" id="nk-title"></div>
+        <div class="form-row"><div class="form-label">Kategorie</div><select class="form-select" id="nk-cat">
+          ${KB_CATS.map(c => `<option value="${c.key}" ${state.activeKbCat===c.key?'selected':''}>${c.label}</option>`).join('')}
+        </select></div>
+        <div class="form-row"><div class="form-label">Lesezeit</div><input class="form-input" id="nk-read" placeholder="5 min"></div>
+        <div class="form-row full"><div class="form-label">Zusammenfassung</div><textarea class="form-textarea" id="nk-summary"></textarea></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="addKnowledge()">Anlegen</button>
+      </div>
+    `;
+  } else if(type==='add-document'){
+    modal.innerHTML = `
+      <div class="modal-head">
+        <div class="modal-title">Dokument hinzufügen</div>
+        <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="form-grid">
+        <div class="form-row full"><div class="form-label">Dokumentname</div><input class="form-input" id="ndo-name"></div>
+        <div class="form-row"><div class="form-label">Typ</div><select class="form-select" id="ndo-type">
+          <option>PDF</option><option>DOCX</option><option>XLSX</option><option>PPTX</option><option>ZIP</option>
+        </select></div>
+        <div class="form-row"><div class="form-label">Kategorie</div><select class="form-select" id="ndo-cat">
+          <option value="praes">Präsentationen</option><option value="preis">Preisübersichten</option>
+          <option value="gewerbe">Gewerbeangebote</option><option value="branding">Branding</option>
+          <option value="marketing">Marketing</option><option value="vertrag">Verträge</option>
+          <option value="vorlage">Vorlagen</option><option value="schulung">Schulung</option>
+        </select></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="addDocument()">Anlegen</button>
+      </div>
+    `;
+  }
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+function closeModal(){ document.getElementById('modal-backdrop').classList.remove('open')}
+
+/* CRUD actions */
+async function addPriority(){
+  const text = document.getElementById('np-text').value.trim();
+  if(!text) return;
+  state.priorities.unshift({id:'pr_'+Date.now(), text, tag: document.getElementById('np-tag').value, meta: document.getElementById('np-meta').value || 'Neu', done:false});
+  await persist(); closeModal(); renderPriorities(); toast('Priorität angelegt ✓','success');
+}
+async function addTicket(){
+  const title = document.getElementById('nt-title').value.trim();
+  if(!title) return;
+  state.tickets.unshift({
+    id:'t_'+Date.now(),
+    title,
+    customer: document.getElementById('nt-customer').value || '—',
+    cat: document.getElementById('nt-cat').value,
+    prio: document.getElementById('nt-prio').value,
+    status:'new',
+    created: new Date().toISOString(),
+    notes: document.getElementById('nt-notes').value
+  });
+  await persist(); closeModal(); renderKanban(); toast('Ticket angelegt ✓','success');
+}
+async function addDistributor(){
+  const name = document.getElementById('nd-name').value.trim();
+  if(!name) return;
+  const gewerbe = document.getElementById('nd-gewerbe').value === 'true';
+  const bonitaet = document.getElementById('nd-bonitaet').value === 'true';
+  const tags = [];
+  if(gewerbe) tags.push('gewerbe');
+  if(bonitaet) tags.push('bonitaet');
+  state.distributors.push({
+    id:'d_'+Date.now(),
+    name, short: document.getElementById('nd-short').value.toUpperCase() || name.substring(0,2).toUpperCase(),
+    provision: document.getElementById('nd-prov').value,
+    payout: document.getElementById('nd-pay').value,
+    contact: document.getElementById('nd-contact').value,
+    phone: document.getElementById('nd-phone').value,
+    email: document.getElementById('nd-email').value,
+    portal: document.getElementById('nd-portal').value,
+    gewerbe, bonitaet, rating:3, favorite:false, pros:[], cons:[], tags,
+    notes: document.getElementById('nd-notes').value, problems:''
+  });
+  await persist(); closeModal(); renderDistributors(); toast('Distributor angelegt ✓','success');
+}
+async function addPartner(){
+  const name = document.getElementById('np-name').value.trim();
+  if(!name) return;
+  state.partners.push({
+    id:'p_'+Date.now(), name,
+    short: name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase(),
+    type: document.getElementById('np-type').value,
+    role: document.getElementById('np-role').value || 'Partner',
+    phone: document.getElementById('np-phone').value,
+    email: document.getElementById('np-email').value,
+    refs:0, revenue:'€0', lastRef:'—', active:true, status:'aktiv',
+    notes: document.getElementById('np-notes').value, favorite:false
+  });
+  await persist(); closeModal(); renderPartners(); toast('Partner angelegt ✓','success');
+}
+async function addReferral(){
+  const name = document.getElementById('nr-name').value.trim();
+  const count = parseInt(document.getElementById('nr-count').value) || 1;
+  if(!name) return;
+  const existing = state.referrals.find(r => r.name === name);
+  if(existing) existing.refs += count;
+  else state.referrals.push({name, refs: count});
+  await persist(); closeModal(); renderLeaderboard(); toast('Empfehlung erfasst ✓','success');
+}
+async function addKnowledge(){
+  const title = document.getElementById('nk-title').value.trim();
+  if(!title) return;
+  const d = new Date();
+  state.knowledge.unshift({
+    id:'k_'+Date.now(), title,
+    cat: document.getElementById('nk-cat').value,
+    summary: document.getElementById('nk-summary').value,
+    readtime: document.getElementById('nk-read').value || '5 min',
+    date: `${d.getDate()}. ${['Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'][d.getMonth()]} ${d.getFullYear()}`
+  });
+  await persist(); closeModal(); renderKB(); toast('Wissensartikel angelegt ✓','success');
+}
+async function addDocument(){
+  const name = document.getElementById('ndo-name').value.trim();
+  if(!name) return;
+  const d = new Date();
+  const colors = ['#2DD4BF','#60A5FA','#34D399','#FBBF24','#F87171','#A78BFA','#FB923C'];
+  state.documents.unshift({
+    id:'doc_'+Date.now(), name,
+    type: document.getElementById('ndo-type').value,
+    cat: document.getElementById('ndo-cat').value,
+    favorite:false, size:'— KB',
+    date: `${d.getDate()}. ${['Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'][d.getMonth()]} ${d.getFullYear()}`,
+    color: colors[Math.floor(Math.random()*colors.length)]
+  });
+  await persist(); closeModal(); renderDocs(); toast('Dokument hinzugefügt ✓','success');
+}
+
+/* ============================================================
+   NAVIGATION & FILTERS
+   ============================================================ */
+function goPage(p){
+  state.currentPage = p;
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.page===p));
+  document.querySelectorAll('.page').forEach(el => el.classList.toggle('active', el.dataset.page===p));
+  // Scroll content to top
+  document.querySelector('.content').scrollTop = 0;
+}
+
+function setupNav(){
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.addEventListener('click', () => goPage(el.dataset.page));
+  });
+}
+
+function setupFilters(){
+  document.querySelectorAll('[data-dist-filter]').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('[data-dist-filter]').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    state.activeFilter.dist = c.dataset.distFilter;
+    renderDistributors();
+  }));
+  document.querySelectorAll('[data-nach-filter]').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('[data-nach-filter]').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    state.activeFilter.nach = c.dataset.nachFilter;
+    renderKanban();
+  }));
+  document.querySelectorAll('[data-partner-filter]').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('[data-partner-filter]').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    state.activeFilter.partner = c.dataset.partnerFilter;
+    renderPartners();
+  }));
+  document.querySelectorAll('[data-doc-filter]').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('[data-doc-filter]').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    state.activeFilter.doc = c.dataset.docFilter;
+    renderDocs();
+  }));
+}
+
+/* ============================================================
+   UTILS
+   ============================================================ */
+function copyText(text, msg){
+  navigator.clipboard.writeText(text).then(() => toast(msg||'Kopiert ✓', 'success'));
+}
+function toast(msg, type){
+  const t = document.getElementById('toast');
+  t.innerHTML = `${type==='success'?'<span class="ic">✓</span>':''}<span>${msg}</span>`;
+  t.className = `toast show ${type||''}`;
+  setTimeout(() => { t.classList.remove('show')}, 2500);
+}
+document.getElementById('modal-backdrop').addEventListener('click', (e) => {
+  if(e.target.id === 'modal-backdrop') closeModal();
+});
+
+// Quick Create dropdown
+document.getElementById('quick-create-btn').addEventListener('click', () => {
+  // Cycle through quick actions based on current page
+  const p = state.currentPage;
+  if(p==='distributors') openModal('add-distributor');
+  else if(p==='nacharbeit') openModal('add-ticket');
+  else if(p==='partners') openModal('add-partner');
+  else if(p==='referrals') openModal('add-referral');
+  else if(p==='knowledge') openModal('add-knowledge');
+  else if(p==='library') openModal('add-document');
+  else openModal('quick-task');
+});
+
+// Global search
+document.getElementById('global-search').addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase().trim();
+  if(!q) return;
+  // Simple cross-search (visual feedback only — focus on UX)
+});
+
+// Cmd+K focuses search
+document.addEventListener('keydown', (e) => {
+  if((e.metaKey||e.ctrlKey) && e.key==='k'){
+    e.preventDefault();
+    document.getElementById('global-search').focus();
+  }
+  if(e.key==='Escape') closeModal();
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+async function init(){
+  await loadState();
+  setGreeting();
+  setupNav();
+  setupFilters();
+  renderPriorities();
+  renderActivity();
+  renderDistributors();
+  renderKanban();
+  renderPartners();
+  renderTemplates();
+  renderLeaderboard();
+  renderQR();
+  renderKB();
+  renderDocs();
+  renderInsights();
+}
+init();
+</script>
+</body>
+</html>
